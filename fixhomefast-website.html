@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixHomeFast – DIY Home Solutions, Cleaning Tips & Repair Guides</title>
+  <meta name="description" content="FixHomeFast is your go-to resource for practical DIY home solutions. Stain removal, pest control, bathroom fixes, kitchen repairs, and more – all explained simply." />
+  <meta name="keywords" content="DIY home repair, stain removal, pest control, home cleaning tips, bathroom fixes, kitchen repairs" />
+  <meta property="og:title" content="FixHomeFast – DIY Home Solutions" />
+  <meta property="og:description" content="Practical DIY home tips for every problem. Fix it fast with FixHomeFast." />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.fixhomefast.com/" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "FixHomeFast",
+    "description": "DIY home solutions for stains, cleaning, pest control, bathroom, kitchen and more.",
+    "url": "https://www.fixhomefast.com"
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --bg2: #161b26;
+      --card: #1c2333;
+      --border: #2a3348;
+      --accent: #f5a623;
+      --accent2: #e8743b;
+      --text: #e8eaf0;
+      --muted: #8a94a8;
+      --white: #ffffff;
+      --gradient: linear-gradient(135deg, #f5a623, #e8743b);
+      --radius: 14px;
+      --shadow: 0 8px 40px rgba(0,0,0,0.45);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,17,23,0.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+
+    /* ─── LOGO ─── */
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; cursor: pointer;
+    }
+    .logo-icon {
+      width: 42px; height: 42px;
+      position: relative; flex-shrink: 0;
+    }
+    .logo-icon svg { width: 100%; height: 100%; }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem; font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .logo-text span { color: var(--accent); }
+
+    /* ─── NAV ─── */
+    nav { display: flex; align-items: center; gap: 6px; }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500;
+      padding: 7px 13px; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--white); background: var(--card); }
+    .nav-cta {
+      background: var(--gradient) !important;
+      color: var(--white) !important;
+      padding: 8px 18px !important;
+      border-radius: 8px !important;
+    }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); margin: 5px 0;
+      transition: 0.3s; border-radius: 2px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 100px 5% 80px;
+      text-align: center;
+      min-height: 88vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,166,35,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 80% 80%, rgba(232,116,59,0.12) 0%, transparent 60%),
+        var(--bg);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0; opacity: 0.04;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(245,166,35,0.12); border: 1px solid rgba(245,166,35,0.3);
+      color: var(--accent); font-size: 0.8rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 50px; margin-bottom: 28px;
+      animation: fadeDown 0.6s ease both;
+    }
+    .hero-badge::before { content: '🔧'; }
+    h1.hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900; line-height: 1.12;
+      color: var(--white); margin-bottom: 22px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1.hero-title em {
+      font-style: normal;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted); max-width: 560px;
+      margin: 0 auto 36px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gradient); color: var(--white);
+      font-weight: 600; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 10px;
+      text-decoration: none; transition: all 0.25s;
+      box-shadow: 0 4px 24px rgba(245,166,35,0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,166,35,0.4); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); color: var(--text);
+      font-weight: 600; font-size: 0.95rem;
+      padding: 14px 28px; border-radius: 10px;
+      text-decoration: none; border: 1px solid var(--border);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Hero stats */
+    .hero-stats {
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+      margin-top: 56px;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900; color: var(--accent);
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section { padding: 80px 5%; }
+    .section-inner { max-width: 1280px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 52px; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(245,166,35,0.12);
+      color: var(--accent); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 16px;
+    }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900; color: var(--white); line-height: 1.2;
+    }
+    .section-sub { color: var(--muted); margin-top: 12px; font-size: 1.05rem; }
+
+    /* ─── CATEGORIES ─── */
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 16px;
+    }
+    .cat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 20px;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      position: relative; overflow: hidden;
+    }
+    .cat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gradient); opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .cat-card:hover { transform: translateY(-6px) scale(1.02); border-color: var(--accent); box-shadow: 0 12px 36px rgba(245,166,35,0.2); }
+    .cat-card:hover::before { opacity: 0.06; }
+    .cat-icon { font-size: 2rem; position: relative; z-index: 1; }
+    .cat-name { font-weight: 600; font-size: 0.92rem; color: var(--text); position: relative; z-index: 1; }
+    .cat-count { font-size: 0.76rem; color: var(--muted); position: relative; z-index: 1; }
+
+    /* ─── FEATURED POST ─── */
+    .featured-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px;
+    }
+    .featured-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      text-decoration: none; display: block;
+      transition: all 0.28s;
+    }
+    .featured-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .featured-img {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1c2a3a, #243040);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative; overflow: hidden;
+    }
+    .featured-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(15,17,23,0.7) 0%, transparent 50%);
+    }
+    .featured-body { padding: 24px; }
+    .post-cat-tag {
+      display: inline-block;
+      background: rgba(245,166,35,0.15);
+      color: var(--accent); font-size: 0.74rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 50px; margin-bottom: 12px;
+    }
+    .featured-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 700; color: var(--white);
+      line-height: 1.3; margin-bottom: 10px;
+    }
+    .featured-card.small h3 { font-size: 1.1rem; }
+    .post-excerpt { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; }
+    .post-meta { display: flex; align-items: center; gap: 14px; font-size: 0.8rem; color: var(--muted); }
+    .post-meta span { display: flex; align-items: center; gap: 5px; }
+
+    .featured-side { display: flex; flex-direction: column; gap: 16px; }
+    .featured-card.small .featured-img { aspect-ratio: 16/7; font-size: 2.2rem; }
+
+    /* ─── POSTS GRID ─── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 22px;
+    }
+    .post-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      text-decoration: none; display: block;
+      transition: all 0.28s;
+    }
+    .post-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .post-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1c2a3a, #243040);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem;
+    }
+    .post-body { padding: 20px; }
+    .post-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white);
+      line-height: 1.35; margin-bottom: 8px;
+    }
+    .read-more {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: var(--accent); font-size: 0.84rem; font-weight: 600;
+      margin-top: 14px; transition: gap 0.2s;
+    }
+    .post-card:hover .read-more { gap: 9px; }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter-section {
+      padding: 80px 5%;
+      background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(232,116,59,0.06));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .newsletter-inner {
+      max-width: 580px; margin: 0 auto; text-align: center;
+    }
+    .newsletter-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900; color: var(--white); margin-bottom: 12px;
+    }
+    .newsletter-inner p { color: var(--muted); margin-bottom: 28px; }
+    .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .newsletter-form input {
+      flex: 1; min-width: 240px;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      padding: 13px 18px; border-radius: 10px; outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form input::placeholder { color: var(--muted); }
+    .newsletter-form button {
+      background: var(--gradient); color: var(--white);
+      border: none; padding: 13px 26px; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; transition: all 0.25s; white-space: nowrap;
+    }
+    .newsletter-form button:hover { box-shadow: 0 4px 24px rgba(245,166,35,0.35); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 60px 5% 30px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand p { color: var(--muted); font-size: 0.9rem; margin-top: 14px; line-height: 1.7; }
+    .footer-col h4 {
+      color: var(--white); font-weight: 600; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; margin-bottom: 9px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      padding-top: 24px; border-top: 1px solid var(--border);
+      font-size: 0.83rem; color: var(--muted);
+    }
+    .footer-bottom a { color: var(--muted); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--accent); }
+
+    /* ─── AD PLACEHOLDER ─── */
+    .ad-banner {
+      background: var(--card); border: 1px dashed var(--border);
+      border-radius: var(--radius); padding: 22px;
+      text-align: center; color: var(--muted); font-size: 0.82rem;
+      margin: 32px 0;
+    }
+    .ad-banner strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+
+    /* ─── ARTICLE PAGE ─── */
+    .article-page { display: none; }
+    .article-hero {
+      padding: 60px 5% 40px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      font-size: 0.82rem; color: var(--muted); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .breadcrumb a { color: var(--accent); text-decoration: none; }
+    .article-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.2; max-width: 860px; margin-bottom: 18px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+      font-size: 0.85rem; color: var(--muted);
+    }
+    .article-meta span { display: flex; align-items: center; gap: 5px; }
+    .article-body {
+      padding: 48px 5%;
+    }
+    .article-inner {
+      max-width: 800px; margin: 0 auto;
+    }
+    .article-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem; font-weight: 700; color: var(--white);
+      margin: 36px 0 14px;
+    }
+    .article-inner h3 {
+      font-size: 1.1rem; font-weight: 600; color: var(--accent);
+      margin: 26px 0 10px;
+    }
+    .article-inner p { color: var(--muted); margin-bottom: 18px; font-size: 1.0rem; }
+    .article-inner ul, .article-inner ol {
+      color: var(--muted); padding-left: 22px; margin-bottom: 18px;
+    }
+    .article-inner li { margin-bottom: 8px; }
+    .article-inner strong { color: var(--text); }
+    .img-placeholder {
+      background: linear-gradient(135deg, var(--card), #1e2940);
+      border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 40px 24px; text-align: center; margin: 28px 0;
+      color: var(--muted); font-size: 0.9rem;
+    }
+    .img-placeholder span { font-size: 3rem; display: block; margin-bottom: 10px; }
+    .tip-box {
+      background: rgba(245,166,35,0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 18px 20px; margin: 24px 0;
+    }
+    .tip-box strong { color: var(--accent); display: block; margin-bottom: 6px; }
+    .warning-box {
+      background: rgba(232,116,59,0.08);
+      border-left: 4px solid var(--accent2);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 18px 20px; margin: 24px 0;
+    }
+    .warning-box strong { color: var(--accent2); display: block; margin-bottom: 6px; }
+
+    /* ─── MOBILE NAV ─── */
+    .mobile-nav {
+      display: none; flex-direction: column; gap: 4px;
+      padding: 16px 5% 20px;
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: var(--muted); text-decoration: none; font-size: 0.95rem;
+      font-weight: 500; padding: 10px 14px; border-radius: 8px; transition: all 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--white); background: var(--card); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(22px);} to {opacity:1;transform:translateY(0);} }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-12px);} to {opacity:1;transform:translateY(0);} }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s, transform 0.6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      nav { display: none; }
+      .hamburger { display: block; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding: 70px 5% 60px; min-height: auto; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .cats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ─── PAGE TRANSITIONS ─── */
+    .page { transition: opacity 0.3s, transform 0.3s; }
+    .page.out { opacity: 0; transform: translateY(12px); pointer-events: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="nav-inner">
+    <a class="logo" onclick="showHome()" href="#">
+      <div class="logo-icon">
+        <svg viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#f5a623"/>
+              <stop offset="1" stop-color="#e8743b"/>
+            </linearGradient>
+          </defs>
+          <!-- House shape -->
+          <path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#lg1)" opacity="0.95"/>
+          <!-- Wrench -->
+          <path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity="0.92"/>
+        </svg>
+      </div>
+      <span class="logo-text">Fix<span>Home</span>Fast</span>
+    </a>
+    <nav>
+      <a href="#categories" onclick="showHome()">Categories</a>
+      <a href="#" onclick="showHome()">Latest Posts</a>
+      <a href="#" class="nav-cta">Browse All Tips</a>
+    </nav>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" onclick="showHome();toggleMenu()">🏠 Home</a>
+    <a href="#categories" onclick="toggleMenu()">📂 Categories</a>
+    <a href="#" onclick="toggleMenu()">🔧 Stain Removal</a>
+    <a href="#" onclick="toggleMenu()">🧹 Home Cleaning</a>
+    <a href="#" onclick="toggleMenu()">🐛 Pest Control</a>
+    <a href="#" onclick="toggleMenu()">🚿 Bathroom Fixes</a>
+    <a href="#" onclick="toggleMenu()">🍳 Kitchen Fixes</a>
+    <a href="#" onclick="toggleMenu()">🔨 Home Repair</a>
+  </div>
+</header>
+
+<!-- ══════════════════ HOME PAGE ══════════════════ -->
+<main id="homePage" class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Your trusted DIY home guide since 2024</div>
+      <h1 class="hero-title">Fix Any Home Problem <em>Fast & Smart</em></h1>
+      <p class="hero-sub">Practical, step-by-step guides for stain removal, pest control, bathroom fixes, kitchen repairs, and everything in between.</p>
+      <div class="hero-actions">
+        <a href="#latest" class="btn-primary">Browse Tips ↓</a>
+        <a href="#categories" class="btn-secondary">View Categories</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Expert Articles</div></div>
+        <div class="stat"><div class="stat-num">7</div><div class="stat-label">Home Categories</div></div>
+        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Free to Read</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD BANNER -->
+  <div style="padding: 0 5%;max-width:1280px;margin:0 auto;">
+    <div class="ad-banner"><strong>Advertisement</strong>Your ad could appear here — Google AdSense</div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section class="section" id="categories">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-tag">Explore Topics</div>
+        <h2 class="section-title">Browse by Category</h2>
+        <p class="section-sub">Find solutions for every corner of your home.</p>
+      </div>
+      <div class="cats-grid reveal">
+        <a href="#" class="cat-card" onclick="filterCat('Stain Removal')">
+          <div class="cat-icon">🧴</div>
+          <div class="cat-name">Stain Removal</div>
+          <div class="cat-count">18 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Home Cleaning')">
+          <div class="cat-icon">🧹</div>
+          <div class="cat-name">Home Cleaning</div>
+          <div class="cat-count">16 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Pest Control')">
+          <div class="cat-icon">🐛</div>
+          <div class="cat-name">Pest Control</div>
+          <div class="cat-count">14 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Bathroom Fixes')">
+          <div class="cat-icon">🚿</div>
+          <div class="cat-name">Bathroom Fixes</div>
+          <div class="cat-count">15 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Kitchen Fixes')">
+          <div class="cat-icon">🍳</div>
+          <div class="cat-name">Kitchen Fixes</div>
+          <div class="cat-count">15 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Home Repair')">
+          <div class="cat-icon">🔨</div>
+          <div class="cat-name">Home Repair</div>
+          <div class="cat-count">14 articles</div>
+        </a>
+        <a href="#" class="cat-card" onclick="filterCat('Room Comfort')">
+          <div class="cat-icon">🛋️</div>
+          <div class="cat-name">Room Comfort Tips</div>
+          <div class="cat-count">8 articles</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED POSTS -->
+  <section class="section" id="latest" style="padding-top:0;">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-tag">Latest</div>
+        <h2 class="section-title">Featured Articles</h2>
+      </div>
+      <div class="featured-grid reveal">
+        <a href="#" class="featured-card" onclick="openArticle('oil-stain')">
+          <div class="featured-img">🧴</div>
+          <div class="featured-body">
+            <span class="post-cat-tag">Stain Removal</span>
+            <h3>How to Remove Oil Stains from Clothes Fast (Step-by-Step)</h3>
+            <p class="post-excerpt">Oil stains don't have to be permanent. With a few household items, you can lift grease from fabric in minutes.</p>
+            <div class="post-meta">
+              <span>📅 May 2025</span>
+              <span>⏱ 5 min read</span>
+              <span>👁 12.4K views</span>
+            </div>
+          </div>
+        </a>
+        <div class="featured-side">
+          <a href="#" class="featured-card small" onclick="openArticle('cockroach')">
+            <div class="featured-img">🐛</div>
+            <div class="featured-body">
+              <span class="post-cat-tag">Pest Control</span>
+              <h3>How to Get Rid of Cockroaches in the Kitchen Without Chemicals</h3>
+              <div class="post-meta"><span>📅 May 2025</span><span>⏱ 6 min</span></div>
+            </div>
+          </a>
+          <a href="#" class="featured-card small" onclick="openArticle('dripping-faucet')">
+            <div class="featured-img">🚿</div>
+            <div class="featured-body">
+              <span class="post-cat-tag">Bathroom Fixes</span>
+              <h3>Fix a Dripping Faucet Yourself: No Plumber Needed</h3>
+              <div class="post-meta"><span>📅 Apr 2025</span><span>⏱ 7 min</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST POSTS GRID -->
+  <section class="section" style="padding-top:0;" id="postsGrid">
+    <div class="section-inner">
+      <div class="section-header reveal" style="text-align:left;margin-bottom:30px;">
+        <h2 class="section-title" style="font-size:1.6rem;" id="gridTitle">More Articles</h2>
+      </div>
+      <div class="posts-grid reveal" id="postsContainer">
+        <!-- populated by JS -->
+      </div>
+      <div style="text-align:center;margin-top:40px;" class="reveal">
+        <button class="btn-primary" onclick="loadMore()" id="loadMoreBtn">Load More Articles</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter-section">
+    <div class="newsletter-inner reveal">
+      <div class="section-tag">Stay Updated</div>
+      <h2>Get Weekly Home Tips</h2>
+      <p>Join 8,000+ homeowners who get our best DIY guides every week. Free, always.</p>
+      <div class="newsletter-form">
+        <input type="email" placeholder="Your email address" />
+        <button>Subscribe Free</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════════ ARTICLE PAGE ══════════════════ -->
+<main id="articlePage" class="page" style="display:none;">
+  <div id="articleContent"></div>
+  <!-- Related posts + sidebar ad injected by JS -->
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="logo" onclick="showHome()" href="#" style="display:inline-flex;">
+          <div class="logo-icon" style="width:34px;height:34px;">
+            <svg viewBox="0 0 42 42" fill="none"><defs><linearGradient id="lg2" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#f5a623"/><stop offset="1" stop-color="#e8743b"/></linearGradient></defs><path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#lg2)" opacity="0.95"/><path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity="0.92"/></svg>
+          </div>
+          <span class="logo-text" style="font-size:1.15rem;">Fix<span>Home</span>Fast</span>
+        </a>
+        <p>Practical, honest home repair and cleaning advice for real people. No fluff — just solutions that work.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="#">Stain Removal</a>
+        <a href="#">Home Cleaning</a>
+        <a href="#">Pest Control</a>
+        <a href="#">Bathroom Fixes</a>
+        <a href="#">Kitchen Fixes</a>
+        <a href="#">Home Repair</a>
+        <a href="#">Room Comfort</a>
+      </div>
+      <div class="footer-col">
+        <h4>Popular</h4>
+        <a href="#" onclick="openArticle('oil-stain')">Remove Oil Stains</a>
+        <a href="#" onclick="openArticle('cockroach')">Cockroach Control</a>
+        <a href="#" onclick="openArticle('dripping-faucet')">Fix Dripping Faucet</a>
+        <a href="#">Unclog Shower Drain</a>
+        <a href="#">Remove Mold from Grout</a>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Disclaimer</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 FixHomeFast. All rights reserved.</span>
+      <span>Built for homeowners who fix things themselves.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ─── POSTS DATA ─── */
+  const allPosts = [
+    { id:'oil-stain',    cat:'Stain Removal',  icon:'🧴', title:'How to Remove Oil Stains from Clothes Fast', slug:'remove-oil-stain-clothes-fast', time:'5 min' },
+    { id:'cockroach',    cat:'Pest Control',   icon:'🐛', title:'How to Get Rid of Cockroaches Without Chemicals', slug:'get-rid-cockroaches-kitchen-no-chemicals', time:'6 min' },
+    { id:'dripping-faucet', cat:'Bathroom Fixes', icon:'🚿', title:'Fix a Dripping Faucet Yourself: No Plumber Needed', slug:'fix-dripping-faucet-no-plumber', time:'7 min' },
+    { id:'p4',  cat:'Home Cleaning',  icon:'🧹', title:'How to Deep Clean Your Bathroom in 30 Minutes', slug:'deep-clean-bathroom-30-minutes', time:'4 min' },
+    { id:'p5',  cat:'Kitchen Fixes',  icon:'🍳', title:'Why Is My Gas Burner Not Lighting? Easy Fixes', slug:'gas-burner-not-lighting-fixes', time:'5 min' },
+    { id:'p6',  cat:'Home Repair',    icon:'🔨', title:'How to Fix a Squeaky Floorboard Without Lifting It', slug:'fix-squeaky-floorboard-easy', time:'6 min' },
+    { id:'p7',  cat:'Stain Removal',  icon:'🍷', title:'Remove Red Wine Stains from Carpet Immediately', slug:'remove-red-wine-stain-carpet', time:'4 min' },
+    { id:'p8',  cat:'Room Comfort',   icon:'🛋️', title:'7 Ways to Keep Your Room Cool Without AC', slug:'keep-room-cool-without-ac', time:'5 min' },
+    { id:'p9',  cat:'Pest Control',   icon:'🐜', title:'Natural Ways to Get Rid of Ants in the Kitchen', slug:'get-rid-ants-kitchen-natural', time:'5 min' },
+    { id:'p10', cat:'Bathroom Fixes', icon:'🪠', title:'How to Unclog a Shower Drain With No Tools', slug:'unclog-shower-drain-no-tools', time:'3 min' },
+    { id:'p11', cat:'Home Cleaning',  icon:'🫧', title:'The Best Way to Remove Mold from Bathroom Grout', slug:'remove-mold-bathroom-grout', time:'6 min' },
+    { id:'p12', cat:'Kitchen Fixes',  icon:'🧊', title:'Refrigerator Not Cooling? Check These 5 Things First', slug:'refrigerator-not-cooling-fixes', time:'7 min' },
+    { id:'p13', cat:'Home Repair',    icon:'🪟', title:'How to Fix a Window That Won\'t Stay Open', slug:'fix-window-wont-stay-open', time:'5 min' },
+    { id:'p14', cat:'Stain Removal',  icon:'🩸', title:'How to Remove Blood Stains from Sheets and Fabric', slug:'remove-blood-stains-sheets-fabric', time:'4 min' },
+    { id:'p15', cat:'Pest Control',   icon:'🐀', title:'How to Get Rid of Mice Without a Pest Control Company', slug:'get-rid-mice-without-pest-control', time:'8 min' },
+  ];
+
+  let visibleCount = 6;
+  let currentFilter = null;
+
+  function getFilteredPosts() {
+    return currentFilter ? allPosts.filter(p => p.cat === currentFilter) : allPosts;
+  }
+
+  function renderPosts() {
+    const container = document.getElementById('postsContainer');
+    const posts = getFilteredPosts().slice(0, visibleCount);
+    container.innerHTML = posts.map(p => `
+      <a href="#" class="post-card" onclick="openArticle('${p.id}');return false;">
+        <div class="post-thumb">${p.icon}</div>
+        <div class="post-body">
+          <span class="post-cat-tag">${p.cat}</span>
+          <h3>${p.title}</h3>
+          <p class="post-excerpt" style="color:var(--muted);font-size:.88rem;margin-top:8px;">Practical steps to solve this common home problem — fast and without calling a pro.</p>
+          <span class="read-more">Read Article →</span>
+        </div>
+      </a>
+    `).join('');
+    document.getElementById('loadMoreBtn').style.display =
+      getFilteredPosts().length > visibleCount ? 'inline-flex' : 'none';
+    revealAll();
+  }
+
+  function loadMore() { visibleCount += 6; renderPosts(); }
+
+  function filterCat(cat) {
+    currentFilter = cat;
+    visibleCount = 6;
+    document.getElementById('gridTitle').textContent = cat;
+    renderPosts();
+    document.getElementById('postsGrid').scrollIntoView({ behavior:'smooth' });
+  }
+
+  /* ─── ARTICLES CONTENT ─── */
+  const articles = {
+    'oil-stain': `
+      <div class="article-hero">
+        <div style="max-width:1280px;margin:0 auto;">
+          <div class="breadcrumb"><a onclick="showHome()">Home</a> › <a>Stain Removal</a> › Oil Stains</div>
+          <h1>How to Remove Oil Stains from Clothes Fast (Step-by-Step)</h1>
+          <div class="article-meta">
+            <span>📂 Stain Removal</span><span>📅 May 2025</span>
+            <span>⏱ 5 min read</span><span>👤 By FixHomeFast Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-inner">
+          <p><strong>Oil stains are frustrating</strong> — one splash while cooking and your favorite shirt is ruined. But here's the good news: most oil stains come out completely if you act quickly and use the right method.</p>
+          <p>This guide covers everything from fresh oil spills to dried, set-in grease stains. No expensive products needed — just things you probably already have at home.</p>
+          <div class="img-placeholder"><span>🛢️</span>Image: Fresh oil stain on a white cotton shirt before treatment</div>
+          <h2>What You'll Need</h2>
+          <ul>
+            <li>Dish soap (Dawn or similar grease-cutting formula)</li>
+            <li>Baking soda or cornstarch</li>
+            <li>An old toothbrush</li>
+            <li>Paper towels</li>
+            <li>Cold water</li>
+          </ul>
+          <h2>Step 1: Blot — Don't Rub</h2>
+          <p>The moment you notice the oil stain, grab a paper towel and gently blot the area. Press down to absorb as much oil as possible. <strong>Never rub</strong> — rubbing pushes the oil deeper into the fabric fibers and spreads it further.</p>
+          <div class="tip-box"><strong>💡 Quick Tip</strong>Work from the outer edges of the stain inward to prevent it from spreading.</div>
+          <h2>Step 2: Apply an Absorbent Powder</h2>
+          <p>Sprinkle a generous layer of baking soda or cornstarch directly over the stain. These powders are excellent at drawing oil out of fabric. Let it sit for at least 15–30 minutes (an hour is even better).</p>
+          <p>After waiting, brush or shake off the powder. You should notice it has clumped slightly — that's a good sign it's pulled oil from the fabric.</p>
+          <h2>Step 3: Apply Dish Soap</h2>
+          <p>Put a small drop of dish soap directly on the stain and work it in gently with your fingers or an old toothbrush. Dish soap is designed to cut through grease, and it works just as well on fabric as it does on pots and pans.</p>
+          <p>Let the soap sit on the stain for another 5–10 minutes before washing.</p>
+          <div class="img-placeholder"><span>🧴</span>Image: Applying dish soap to stain with a toothbrush</div>
+          <h2>Step 4: Wash in the Hottest Safe Temperature</h2>
+          <p>Check the clothing label for the maximum wash temperature. Wash in the warmest water the fabric can handle — heat helps break down oil residue. Use your regular detergent as normal.</p>
+          <div class="warning-box"><strong>⚠️ Warning</strong>Do NOT put the garment in the dryer until you've confirmed the stain is gone. Heat from the dryer will permanently set the stain into the fabric.</div>
+          <h2>Step 5: Check Before Drying</h2>
+          <p>After washing, check the area in good light before putting it in the dryer. If the stain is still visible, repeat steps 3 and 4. Most oil stains need just one treatment, but stubborn ones may need two rounds.</p>
+          <h2>What About Dried Oil Stains?</h2>
+          <p>Don't panic if you didn't catch it right away. Dried oil stains are tougher, but still treatable. Apply a small amount of liquid dish soap or a commercial pre-treatment product (like Zout or Spray 'n Wash) and let it soak in for 30 minutes to an hour before washing.</p>
+          <p>For very old stains, try applying WD-40 first — yes, it sounds strange, but it helps re-liquefy the dried oil so the dish soap can grab it. Apply, wait 20 minutes, then apply dish soap on top, and wash.</p>
+          <h2>Does This Work on All Fabrics?</h2>
+          <p>This method works well on cotton, denim, linen, and most synthetic fabrics. For delicate items like silk or wool, test any product on a hidden area first. When in doubt, take delicate garments to a dry cleaner.</p>
+          <div class="tip-box"><strong>💡 Internal Links</strong>Also see: <a href="#" style="color:var(--accent)">How to Remove Red Wine Stains from Carpet</a> and <a href="#" style="color:var(--accent)">Remove Blood Stains from Sheets and Fabric</a></div>
+          <h2>Quick Summary</h2>
+          <ol>
+            <li>Blot (never rub) immediately</li>
+            <li>Apply baking soda or cornstarch — wait 30 mins</li>
+            <li>Apply dish soap and work it in gently</li>
+            <li>Wash in the warmest safe water</li>
+            <li>Air dry, check, repeat if needed</li>
+          </ol>
+          <p>That's it. A little patience and the right steps and those oil stains don't stand a chance.</p>
+        </div>
+      </div>
+    `,
+    'cockroach': `
+      <div class="article-hero">
+        <div style="max-width:1280px;margin:0 auto;">
+          <div class="breadcrumb"><a onclick="showHome()">Home</a> › <a>Pest Control</a> › Cockroaches</div>
+          <h1>How to Get Rid of Cockroaches in the Kitchen Without Chemicals</h1>
+          <div class="article-meta">
+            <span>📂 Pest Control</span><span>📅 May 2025</span>
+            <span>⏱ 6 min read</span><span>👤 By FixHomeFast Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-inner">
+          <p>Seeing a cockroach in your kitchen is enough to make your skin crawl. These pests are persistent — but you don't need to drench your kitchen in chemicals to get rid of them. There are several safe, effective, and natural methods that work surprisingly well.</p>
+          <div class="img-placeholder"><span>🐛</span>Image: Common kitchen cockroach near pantry area</div>
+          <h2>Why Cockroaches Love Your Kitchen</h2>
+          <p>Before you can fix the problem, it helps to understand it. Cockroaches are drawn to three things: <strong>food, moisture, and warmth</strong>. Your kitchen has all three. They hide behind appliances, inside cabinets, under the sink, and along baseboards — mostly coming out at night.</p>
+          <h2>Step 1: Remove Their Food Supply</h2>
+          <p>This is the most important step. Cockroaches are opportunistic eaters. Even tiny crumbs under a toaster or a sticky spill behind the stove is enough to keep them coming back.</p>
+          <ul>
+            <li>Store all food (including pet food) in sealed containers</li>
+            <li>Clean up crumbs and spills immediately</li>
+            <li>Empty the trash every night, or use a bin with a tight lid</li>
+            <li>Don't leave dirty dishes in the sink overnight</li>
+          </ul>
+          <h2>Step 2: Eliminate Moisture Sources</h2>
+          <p>Fix any leaky pipes under the sink. Make sure your dishwasher and refrigerator aren't creating standing water. Dry out the sink before bed — even a few drops of water can sustain a cockroach for days.</p>
+          <div class="tip-box"><strong>💡 Tip</strong>Place a dry dishcloth over your drain at night to remove the moisture signal and block an entry point.</div>
+          <h2>Step 3: Use Boric Acid (Safely)</h2>
+          <p>Boric acid is a naturally occurring compound that's highly effective against cockroaches. It's not a spray — it's a powder you apply in thin, almost invisible lines along the edges of cabinets, behind appliances, and under the sink. When cockroaches walk through it, it sticks to their bodies and kills them.</p>
+          <div class="warning-box"><strong>⚠️ Warning</strong>Keep boric acid away from food surfaces, children, and pets. Apply it only in hidden areas they can't access. Use gloves when handling it.</div>
+          <h2>Step 4: Baking Soda and Sugar Trap</h2>
+          <p>Mix equal parts baking soda and sugar and place it in small shallow containers near problem areas. The sugar attracts cockroaches, and the baking soda kills them after they ingest it. It's completely non-toxic to humans and pets.</p>
+          <h2>Step 5: Seal Entry Points</h2>
+          <p>Cockroaches can squeeze through gaps the width of a credit card. Seal any cracks around pipes, inside cabinets, and along baseboards with caulk. Check where plumbing enters walls under the sink and seal those gaps tightly.</p>
+          <div class="img-placeholder"><span>🔧</span>Image: Sealing a pipe gap under a kitchen sink with caulk</div>
+          <h2>Essential Oils That Repel Cockroaches</h2>
+          <p>Peppermint oil and eucalyptus oil are natural cockroach deterrents. Mix 15 drops of peppermint oil with one cup of water in a spray bottle and spray along baseboards, behind appliances, and in cabinet corners. Reapply every few days.</p>
+          <h2>When to Call a Professional</h2>
+          <p>If you've followed these steps for two to three weeks and still see cockroaches regularly, the infestation may be significant. At that point, calling a licensed pest control professional is the right move — an infestation that's deep inside walls or under floors needs more targeted treatment.</p>
+          <div class="tip-box"><strong>💡 Also read:</strong> <a href="#" style="color:var(--accent)">Natural Ways to Get Rid of Ants in the Kitchen</a> | <a href="#" style="color:var(--accent)">How to Get Rid of Mice Without a Pest Control Company</a></div>
+          <h2>Summary: Natural Cockroach Removal Checklist</h2>
+          <ol>
+            <li>Seal and store all food</li>
+            <li>Fix moisture and leaks</li>
+            <li>Apply boric acid in hidden areas</li>
+            <li>Set baking soda + sugar traps</li>
+            <li>Seal gaps and entry points</li>
+            <li>Spray peppermint oil deterrent</li>
+          </ol>
+          <p>Consistency is key. Follow these steps for at least 2–3 weeks and you should see a dramatic reduction.</p>
+        </div>
+      </div>
+    `,
+    'dripping-faucet': `
+      <div class="article-hero">
+        <div style="max-width:1280px;margin:0 auto;">
+          <div class="breadcrumb"><a onclick="showHome()">Home</a> › <a>Bathroom Fixes</a> › Faucet Repair</div>
+          <h1>Fix a Dripping Faucet Yourself: No Plumber Needed</h1>
+          <div class="article-meta">
+            <span>📂 Bathroom Fixes</span><span>📅 April 2025</span>
+            <span>⏱ 7 min read</span><span>👤 By FixHomeFast Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-inner">
+          <p>That constant drip-drip-drip isn't just annoying — a faucet dripping once per second wastes over 3,000 gallons of water per year. The good news? Fixing it yourself usually takes less than an hour and costs just a few dollars. No plumber required.</p>
+          <div class="img-placeholder"><span>🚿</span>Image: Close-up of a dripping bathroom faucet</div>
+          <h2>Understanding Why Faucets Drip</h2>
+          <p>Most dripping faucets are caused by a <strong>worn-out washer or O-ring</strong> inside the handle mechanism. Every time you turn the faucet, this rubber part compresses. Over time, it wears down and stops sealing properly — and water starts leaking through.</p>
+          <p>There are a few types of faucets — compression, ball, cartridge, and ceramic disc. The most common in bathrooms are cartridge and compression types. The fix is slightly different for each, but the basic approach is the same.</p>
+          <h2>Tools and Materials You'll Need</h2>
+          <ul>
+            <li>Adjustable wrench</li>
+            <li>Phillips and flat-head screwdrivers</li>
+            <li>Replacement washers or cartridge (from hardware store)</li>
+            <li>Plumber's grease</li>
+            <li>A towel or small bucket</li>
+          </ul>
+          <h2>Step 1: Turn Off the Water Supply</h2>
+          <p>Look under the sink for the shut-off valves — one for hot, one for cold. Turn them clockwise until they stop. Then turn on the faucet to release any pressure and drain the remaining water. Place a towel under the sink just in case.</p>
+          <div class="warning-box"><strong>⚠️ Important</strong>Never skip this step. If you remove the handle without turning off the water, you'll have a much bigger problem than a drip.</div>
+          <h2>Step 2: Remove the Handle</h2>
+          <p>Look for a decorative cap on top of the handle — pry it off with a flathead screwdriver. Underneath you'll find a screw. Remove it and pull the handle straight off. Some handles twist off instead of lift — if it won't budge, twist it gently while pulling.</p>
+          <h2>Step 3: Access and Inspect the Cartridge or Washer</h2>
+          <p>For <strong>compression faucets</strong>: You'll see a brass stem. Unscrew the packing nut and pull out the stem. At the bottom is a rubber washer held by a brass screw. That's your culprit — replace it with an identical washer from the hardware store.</p>
+          <p>For <strong>cartridge faucets</strong>: Pull out the cartridge (sometimes held by a clip). Take the old cartridge to your hardware store to find an exact match. Replacing the whole cartridge is often easier than replacing individual parts.</p>
+          <div class="img-placeholder"><span>🔧</span>Image: Disassembled bathroom faucet showing cartridge components</div>
+          <h2>Step 4: Install the Replacement</h2>
+          <p>Apply a thin layer of plumber's grease to the new washer or cartridge before installing. This extends its life significantly. Reassemble everything in reverse order — cartridge or stem first, then packing nut, then handle, then the decorative cap.</p>
+          <h2>Step 5: Turn the Water Back On and Test</h2>
+          <p>Slowly open the shut-off valves under the sink. Turn on the faucet and check for the drip. If it's gone, you've fixed it. If there's still a small drip, make sure the stem is tightened enough and that the new washer is seated correctly.</p>
+          <div class="tip-box"><strong>💡 Tip</strong>If the faucet is old and parts are hard to find, it may be more cost-effective to replace the entire faucet unit. A decent replacement faucet costs $30–60 and installation takes under an hour.</div>
+          <h2>When Is It More Serious?</h2>
+          <p>If water is leaking from the base of the faucet or from under the sink (not from the spout), the problem may be with the supply lines or a cracked body — in that case, replacement is smarter than repair. Also, if you turn off the valves and the drip continues, the valves themselves may be faulty.</p>
+          <div class="tip-box"><strong>💡 Also read:</strong> <a href="#" style="color:var(--accent)">How to Unclog a Shower Drain With No Tools</a> | <a href="#" style="color:var(--accent)">The Best Way to Remove Mold from Bathroom Grout</a></div>
+          <h2>Summary</h2>
+          <ol>
+            <li>Shut off water supply valves</li>
+            <li>Remove handle and access stem/cartridge</li>
+            <li>Replace worn washer or full cartridge</li>
+            <li>Reassemble and turn water back on</li>
+            <li>Test for drip — repeat if needed</li>
+          </ol>
+          <p>This is one of the most satisfying DIY fixes you can do. Simple, quick, and it actually saves you money on your water bill every month.</p>
+        </div>
+      </div>
+    `
+  };
+
+  // Generic fallback article
+  function genericArticle(post) {
+    return `
+      <div class="article-hero">
+        <div style="max-width:1280px;margin:0 auto;">
+          <div class="breadcrumb"><a onclick="showHome()">Home</a> › <a>${post.cat}</a></div>
+          <h1>${post.title}</h1>
+          <div class="article-meta">
+            <span>📂 ${post.cat}</span><span>📅 May 2025</span>
+            <span>⏱ ${post.time} read</span><span>👤 By FixHomeFast Team</span>
+          </div>
+        </div>
+      </div>
+      <div class="article-body">
+        <div class="article-inner">
+          <p>This is a practical guide about: <strong>${post.title}</strong>. Full content coming soon — check back for step-by-step instructions, tips, and real solutions from the FixHomeFast team.</p>
+          <div class="img-placeholder"><span>${post.icon}</span>Image: Main illustration for this guide</div>
+          <h2>Overview</h2>
+          <p>This topic is one of the most searched home problems by homeowners. We're preparing a comprehensive, step-by-step guide covering everything you need to know.</p>
+          <div class="tip-box"><strong>💡 More articles</strong>Browse our full library using the categories above to find solutions to similar problems.</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function openArticle(id) {
+    const post = allPosts.find(p => p.id === id);
+    const content = articles[id] || genericArticle(post || { id, cat:'General', icon:'🔧', title:'Article', time:'5 min' });
+    document.getElementById('articleContent').innerHTML = content;
+    document.getElementById('homePage').style.display = 'none';
+    document.getElementById('articlePage').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function showHome() {
+    document.getElementById('homePage').style.display = 'block';
+    document.getElementById('articlePage').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  /* ─── REVEAL ON SCROLL ─── */
+  function revealAll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', revealAll);
+
+  /* ─── INIT ─── */
+  renderPosts();
+  revealAll();
+</script>
+</body>
+</html>
