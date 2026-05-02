@@ -3,1164 +3,1968 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FixHomeFast – DIY Home Solutions, Cleaning Tips & Repair Guides</title>
-<meta name="description" content="FixHomeFast is your go-to resource for practical DIY home solutions. Stain removal, pest control, bathroom fixes, kitchen repairs, and more."/>
-<meta name="keywords" content="DIY home repair, stain removal, pest control, home cleaning tips, bathroom fixes, kitchen repairs"/>
-<meta property="og:title" content="FixHomeFast – DIY Home Solutions"/>
-<meta property="og:description" content="Practical DIY home tips for every problem. Fix it fast with FixHomeFast."/>
-<meta property="og:type" content="website"/>
+<title>FixHomeFast — Premium Home Solutions</title>
+<meta name="description" content="FixHomeFast — cinematic DIY home solutions. Expert guides for every home problem."/>
 <meta name="robots" content="index, follow"/>
-<link rel="canonical" href="https://www.fixhomefast.com/"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"FixHomeFast","description":"DIY home solutions for stains, cleaning, pest control, bathroom, kitchen and more.","url":"https://www.fixhomefast.com"}</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='32' y2='32' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23e85d04'/%3E%3Cstop offset='1' stop-color='%23ffd60a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M16 3L2 13h3v14h8v-7h6v7h8V13h3L16 3z' fill='url(%23g)'/%3E%3C/svg%3E"/>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#09090b;--paper:#fafaf9;--warm:#f5f0e8;
-  --fire:#e85d04;--ember:#f48c06;--gold:#ffd60a;
-  --smoke:#78716c;--ash:#a8a29e;--chalk:#e7e5e4;
-  --card-bg:#ffffff;
-  --grad-fire:linear-gradient(135deg,#e85d04,#f48c06,#ffd60a);
-  --grad-dark:linear-gradient(135deg,#09090b,#1c1917);
-  --shadow-soft:0 4px 24px rgba(9,9,11,0.08);
-  --shadow-lift:0 20px 60px rgba(9,9,11,0.16);
-  --shadow-fire:0 8px 32px rgba(232,93,4,0.35);
-  --r:16px;
+/* ══════════════════════════════════════════
+   ROOT + RESET
+══════════════════════════════════════════ */
+:root {
+  --void: #080808;
+  --deep: #0d0d0d;
+  --surface: #111111;
+  --card: #161616;
+  --border: rgba(255,255,255,0.07);
+  --text: #f0ebe3;
+  --muted: rgba(240,235,227,0.45);
+  --dim: rgba(240,235,227,0.2);
+  --fire: #e85d04;
+  --ember: #f48c06;
+  --gold: #ffd060;
+  --gf: linear-gradient(135deg, #e85d04, #f48c06, #ffd060);
+  --glow: 0 0 60px rgba(232,93,4,0.15);
+  --r: 16px;
 }
-html{scroll-behavior:smooth;overflow-x:hidden}
-body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;cursor:none}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; scroll-behavior: auto; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--void);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--fire); }
 
-/* ═══ CUSTOM CURSOR ═══ */
-#cursor{position:fixed;width:12px;height:12px;background:var(--fire);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply}
-#cursor-ring{position:fixed;width:40px;height:40px;border:1.5px solid var(--fire);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s ease-out;opacity:.6}
-body:hover #cursor{opacity:1}
-.cursor-hover #cursor{width:48px;height:48px;background:var(--fire);opacity:.15}
-.cursor-hover #cursor-ring{width:56px;height:56px;opacity:0}
+/* ══════════════════════════════════════════
+   LOADER
+══════════════════════════════════════════ */
+#loader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--void);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 32px;
+}
+.loader-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem; font-weight: 800;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--text); opacity: 0;
+}
+.loader-logo span { color: var(--fire); }
+.loader-bar-wrap {
+  width: 200px; height: 1px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+}
+.loader-bar {
+  height: 100%;
+  background: var(--gf);
+  width: 0%;
+  transition: width 0.1s linear;
+}
+.loader-pct {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem; letter-spacing: 3px;
+  color: var(--muted); margin-top: -20px;
+}
 
-/* ═══ WELCOME SCREEN ═══ */
-#welcome{
-  position:fixed;inset:0;z-index:10000;
-  background:var(--ink);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;
+/* ══════════════════════════════════════════
+   THREE.JS CANVAS
+══════════════════════════════════════════ */
+#three-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
-#welcome-logo{
-  display:flex;align-items:center;gap:16px;
-  animation:wl-pop .8s cubic-bezier(0.34,1.56,0.64,1) .3s both;
-}
-#welcome-logo svg{width:64px;height:64px}
-#welcome-wordmark{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:4rem;letter-spacing:3px;
-  color:#fff;
-}
-#welcome-wordmark span{color:var(--fire)}
-#welcome-tagline{
-  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-  font-size:1.1rem;color:var(--ash);margin-top:12px;
-  animation:wl-pop .8s cubic-bezier(0.34,1.56,0.64,1) .55s both;
-  letter-spacing:.5px;
-}
-#welcome-bar{
-  position:absolute;bottom:0;left:0;height:3px;
-  background:var(--grad-fire);
-  animation:wl-bar 1.8s cubic-bezier(0.4,0,0.2,1) .2s forwards;
-}
-#welcome-overlay{
-  position:absolute;inset:0;
-  background:var(--ink);
-  animation:wl-exit .7s cubic-bezier(0.76,0,0.24,1) 2.2s forwards;
-}
-@keyframes wl-pop{from{opacity:0;transform:scale(.7) translateY(20px)}to{opacity:1;transform:none}}
-@keyframes wl-bar{from{width:0}to{width:100%}}
-@keyframes wl-exit{from{transform:scaleY(1);transform-origin:top}to{transform:scaleY(0);transform-origin:top}}
-#welcome.done{display:none}
 
-/* ═══ SCROLLBAR ═══ */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--warm)}
-::-webkit-scrollbar-thumb{background:var(--fire);border-radius:2px}
+/* ══════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 5%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0; transform: translateY(-20px);
+}
+#nav.ready { opacity: 1; transform: none; }
+#nav.scrolled {
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-in {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none; cursor: pointer;
+}
+.nav-logo-icon { width: 32px; height: 32px; }
+.nav-logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 800;
+  letter-spacing: 1px; color: var(--text);
+}
+.nav-logo-text span { color: var(--fire); }
+.nav-links { display: flex; align-items: center; gap: 6px; }
+.nav-link {
+  font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.5px; color: var(--muted);
+  padding: 8px 16px; border-radius: 8px;
+  text-decoration: none; cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  background: none; border: none; font-family: 'DM Sans', sans-serif;
+}
+.nav-link:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+.nav-cta {
+  background: var(--fire) !important;
+  color: #fff !important;
+  padding: 9px 22px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s !important;
+  box-shadow: 0 4px 20px rgba(232,93,4,0.3) !important;
+}
+.nav-cta:hover { background: var(--ember) !important; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(232,93,4,0.45) !important; }
+.ham { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+.ham span { display: block; width: 22px; height: 1.5px; background: var(--text); transition: 0.3s; }
+.ham.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px,4.5px); }
+.ham.open span:nth-child(2) { opacity: 0; }
+.ham.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px,-4.5px); }
+.mob-nav {
+  position: fixed; inset: 0; z-index: 99;
+  background: var(--void);
+  transform: translateX(101%);
+  transition: transform 0.5s cubic-bezier(0.76,0,0.24,1);
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px;
+}
+.mob-nav.open { transform: none; }
+.mob-nav a {
+  font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text); text-decoration: none; cursor: pointer;
+  transition: color 0.2s;
+}
+.mob-nav a:hover { color: var(--fire); }
 
-/* ═══ NAV ═══ */
-nav#mainNav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:0 5%;
-  transition:all .4s ease;
+/* ══════════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════════ */
+.section {
+  position: relative; z-index: 10;
+  min-height: 100vh;
+  display: flex; align-items: center;
 }
-nav#mainNav.scrolled{
-  background:rgba(250,250,249,0.92);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--chalk);
-  box-shadow:var(--shadow-soft);
+.section-inner {
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 5%; width: 100%;
 }
-.nav-inner{max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:76px}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
-.nav-logo svg{width:38px;height:38px}
-.nav-wordmark{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--ink)}
-.nav-wordmark span{color:var(--fire)}
-.nav-links{display:flex;align-items:center;gap:4px}
-.nav-links a{
-  position:relative;color:var(--smoke);text-decoration:none;
-  font-size:.85rem;font-weight:500;padding:8px 14px;border-radius:8px;
-  transition:color .2s;overflow:hidden;
-}
-.nav-links a::before{
-  content:'';position:absolute;inset:0;background:var(--warm);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .25s cubic-bezier(0.4,0,0.2,1);border-radius:8px;
-}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a:hover::before{transform:scaleX(1)}
-.nav-links a span{position:relative;z-index:1}
-.nav-cta{
-  display:flex;align-items:center;gap:8px;
-  background:var(--ink);color:#fff !important;
-  padding:10px 20px !important;border-radius:50px !important;
-  font-weight:600 !important;font-size:.85rem !important;
-  transition:all .3s !important;
-  overflow:hidden;
-}
-.nav-cta::after{
-  content:'';position:absolute;inset:0;
-  background:var(--grad-fire);
-  transform:translateX(-101%);
-  transition:transform .35s cubic-bezier(0.4,0,0.2,1);
-  border-radius:50px;
-}
-.nav-cta:hover::after{transform:translateX(0)}
-.nav-cta span{position:relative;z-index:1}
-.nav-cta::before{display:none !important}
-.hamburger{display:none;background:none;border:none;cursor:none;padding:6px;flex-direction:column;gap:5px}
-.hamburger span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:.3s}
-.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
-.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mobile-menu{
-  position:fixed;inset:0;z-index:999;
-  background:var(--ink);
-  transform:translateX(101%);
-  transition:transform .5s cubic-bezier(0.76,0,0.24,1);
-  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;
-}
-.mobile-menu.open{transform:translateX(0)}
-.mobile-menu a{
-  font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:3px;
-  color:#fff;text-decoration:none;padding:8px 24px;
-  transition:color .2s;cursor:none;display:block;
-  animation:none;
-}
-.mobile-menu a:hover{color:var(--fire)}
 
-/* ═══ HERO ═══ */
-#hero{
-  position:relative;min-height:100vh;
-  display:flex;align-items:center;
-  overflow:hidden;background:var(--ink);
-  padding:0 5%;
+/* ══════════════════════════════════════════
+   HERO
+══════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  justify-content: center;
+  padding-top: 72px;
 }
-#hero-canvas{position:absolute;inset:0;z-index:0}
-.hero-blob{
-  position:absolute;border-radius:50%;filter:blur(80px);opacity:.25;
-  animation:blob-float 8s ease-in-out infinite;
-}
-.blob-1{width:600px;height:600px;background:radial-gradient(var(--fire),var(--ember));top:-100px;right:-100px;animation-delay:0s}
-.blob-2{width:400px;height:400px;background:radial-gradient(var(--ember),var(--gold));bottom:-50px;left:10%;animation-delay:-3s}
-.blob-3{width:300px;height:300px;background:radial-gradient(#e85d04,#7c2d12);top:40%;left:30%;animation-delay:-5s;opacity:.15}
-@keyframes blob-float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.05)}66%{transform:translate(-20px,15px) scale(.95)}}
-.hero-inner{position:relative;z-index:1;max-width:1320px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:120px 0 80px}
-.hero-left{}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(255,255,255,0.15);
-  background:rgba(255,255,255,0.05);
-  color:var(--ash);font-size:.78rem;font-weight:600;
-  letter-spacing:2px;text-transform:uppercase;
-  padding:7px 16px;border-radius:50px;
-  margin-bottom:28px;
-  animation:hero-fade .8s 2.5s both;
-}
-.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--fire);border-radius:50%;animation:pulse-dot 2s infinite}
-@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.hero-headline{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(4rem,8vw,8rem);
-  line-height:.95;letter-spacing:2px;
-  color:#fff;margin-bottom:28px;
-  overflow:hidden;
-}
-.hero-headline .line{display:block;animation:line-rise .9s cubic-bezier(0.16,1,0.3,1) both}
-.hero-headline .line:nth-child(1){animation-delay:2.6s}
-.hero-headline .line:nth-child(2){animation-delay:2.75s}
-.hero-headline .line:nth-child(3){animation-delay:2.9s;color:var(--fire)}
-@keyframes line-rise{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
-.hero-sub{
-  font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-  font-size:1.25rem;color:rgba(255,255,255,.55);
-  line-height:1.6;max-width:440px;margin-bottom:44px;
-  animation:hero-fade .8s 3.1s both;
-}
-@keyframes hero-fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero-actions{display:flex;gap:16px;flex-wrap:wrap;animation:hero-fade .8s 3.25s both}
-.btn-fire{
-  position:relative;display:inline-flex;align-items:center;gap:10px;
-  background:var(--grad-fire);color:#fff;
-  font-weight:700;font-size:.95rem;
-  padding:16px 32px;border-radius:50px;
-  text-decoration:none;overflow:hidden;
-  box-shadow:var(--shadow-fire);
-  transition:transform .2s,box-shadow .2s;
-  cursor:none;border:none;font-family:'DM Sans',sans-serif;
-}
-.btn-fire::after{content:'';position:absolute;inset:0;background:#fff;opacity:0;transition:opacity .2s;border-radius:50px}
-.btn-fire:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 48px rgba(232,93,4,.45)}
-.btn-fire:hover::after{opacity:.1}
-.btn-fire .arr{display:inline-block;transition:transform .3s cubic-bezier(0.34,1.56,0.64,1)}
-.btn-fire:hover .arr{transform:translateX(5px)}
-.btn-ghost{
-  position:relative;display:inline-flex;align-items:center;gap:10px;
-  background:transparent;color:rgba(255,255,255,.8);
-  font-weight:600;font-size:.95rem;
-  padding:16px 32px;border-radius:50px;
-  text-decoration:none;border:1px solid rgba(255,255,255,.2);
-  transition:all .3s;cursor:none;
-}
-.btn-ghost:hover{border-color:var(--fire);color:#fff;background:rgba(232,93,4,.08)}
-.hero-stats{
-  display:flex;gap:32px;margin-top:56px;
-  animation:hero-fade .8s 3.4s both;
-}
-.h-stat{border-left:2px solid rgba(255,255,255,.1);padding-left:16px}
-.h-stat-n{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--fire);line-height:1}
-.h-stat-l{font-size:.75rem;color:var(--ash);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
-/* hero right — featured card */
-.hero-right{animation:hero-fade 1s 3.0s both}
-.hero-feat-card{
-  background:#fff;border-radius:24px;overflow:hidden;
-  box-shadow:0 32px 80px rgba(0,0,0,.4);
-  transition:transform .4s cubic-bezier(0.34,1.2,0.64,1);
-}
-.hero-feat-card:hover{transform:translateY(-8px) rotate(-1deg) scale(1.01)}
-.hfc-img{
-  width:100%;height:280px;object-fit:cover;display:block;
-  background:linear-gradient(135deg,#1c2a3a,#2d3f55);
-}
-.hfc-img.placeholder{display:flex;align-items:center;justify-content:center;font-size:5rem}
-.hfc-body{padding:28px}
-.hfc-tag{
-  display:inline-block;background:rgba(232,93,4,.1);color:var(--fire);
-  font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 12px;border-radius:50px;margin-bottom:12px;
-}
-.hfc-title{
-  font-family:'Fraunces',serif;font-weight:700;font-size:1.4rem;
-  color:var(--ink);line-height:1.3;margin-bottom:12px;
-}
-.hfc-meta{display:flex;align-items:center;gap:14px;font-size:.8rem;color:var(--ash)}
-.hfc-read{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--ink);color:#fff;
-  font-size:.8rem;font-weight:600;
-  padding:10px 20px;border-radius:50px;
-  margin-top:18px;cursor:none;transition:all .2s;
-  border:none;font-family:'DM Sans',sans-serif;
-}
-.hfc-read:hover{background:var(--fire);transform:translateX(3px)}
+.hero-content { max-width: 900px; }
 
-/* ═══ TICKER ═══ */
-.ticker-wrap{
-  background:var(--fire);padding:12px 0;overflow:hidden;
-  position:relative;z-index:2;
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--fire);
+  margin-bottom: 28px;
+  opacity: 0; transform: translateY(16px);
 }
-.ticker{display:flex;gap:0;white-space:nowrap;animation:ticker-scroll 30s linear infinite}
-.ticker-item{
-  font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;
-  color:#fff;padding:0 32px;display:flex;align-items:center;gap:16px;
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--fire);
 }
-.ticker-item::after{content:'✦';opacity:.6}
-@keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ═══ CATEGORIES STRIP ═══ */
-.cats-section{padding:80px 5%;background:var(--paper)}
-.cats-inner{max-width:1320px;margin:0 auto}
-.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px}
-.sec-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--fire);margin-bottom:8px}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4rem);letter-spacing:2px;color:var(--ink);line-height:.95}
-.sec-link{
-  display:inline-flex;align-items:center;gap:6px;
-  color:var(--smoke);font-size:.85rem;font-weight:600;
-  text-decoration:none;border-bottom:2px solid var(--chalk);
-  padding-bottom:2px;transition:all .2s;cursor:none;
+.hero-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 8.5rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -1px;
+  color: var(--text);
+  margin-bottom: 32px;
+  overflow: hidden;
 }
-.sec-link:hover{color:var(--fire);border-color:var(--fire)}
-.cats-scroll{
-  display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;
-  scrollbar-width:none;-ms-overflow-style:none;
+.hero-headline .word { display: inline-block; overflow: hidden; }
+.hero-headline .char { display: inline-block; }
+.hero-headline em {
+  font-style: italic;
+  background: var(--gf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.cats-scroll::-webkit-scrollbar{display:none}
-.cat-pill{
-  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-  gap:12px;padding:28px 24px;min-width:150px;
-  background:var(--card-bg);border:1.5px solid var(--chalk);
-  border-radius:20px;cursor:none;text-decoration:none;
-  transition:all .3s cubic-bezier(0.34,1.4,0.64,1);
-  position:relative;overflow:hidden;
-}
-.cat-pill::before{
-  content:'';position:absolute;inset:0;
-  background:var(--grad-fire);opacity:0;
-  transition:opacity .3s;
-}
-.cat-pill:hover{transform:translateY(-8px) scale(1.03);border-color:var(--fire);box-shadow:0 20px 48px rgba(232,93,4,.18)}
-.cat-pill:hover::before{opacity:.05}
-.cat-emoji{font-size:2.2rem;position:relative;z-index:1;transition:transform .3s cubic-bezier(0.34,1.8,0.64,1)}
-.cat-pill:hover .cat-emoji{transform:scale(1.25) rotate(-5deg)}
-.cat-label{font-weight:700;font-size:.85rem;color:var(--ink);position:relative;z-index:1;text-align:center}
-.cat-num{font-size:.72rem;color:var(--ash);position:relative;z-index:1}
 
-/* ═══ FEATURED POSTS ═══ */
-.posts-section{padding:0 5% 80px;background:var(--paper)}
-.posts-inner{max-width:1320px;margin:0 auto}
-/* Bento grid */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:20px}
-.bento-card{
-  background:var(--card-bg);border-radius:20px;overflow:hidden;
-  border:1.5px solid var(--chalk);
-  transition:all .35s cubic-bezier(0.34,1.2,0.64,1);
-  cursor:none;text-decoration:none;display:block;
-  position:relative;
-  transform-style:preserve-3d;
+.hero-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.1rem; font-weight: 300;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 480px;
+  margin-bottom: 48px;
+  opacity: 0; transform: translateY(16px);
 }
-.bento-card:hover{border-color:var(--fire);box-shadow:var(--shadow-lift);transform:translateY(-6px)}
-.bc-img{
-  width:100%;object-fit:cover;display:block;
-  background:linear-gradient(135deg,#1c2a3a 0%,#2a3f52 100%);
-}
-.bc-img.ph{display:flex;align-items:center;justify-content:center;font-size:4rem}
-.bc-body{padding:22px 22px 24px}
-.bc-tag{
-  display:inline-block;background:rgba(232,93,4,.1);color:var(--fire);
-  font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:3px 10px;border-radius:50px;margin-bottom:10px;
-}
-.bc-title{font-family:'Fraunces',serif;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px}
-.bc-exc{font-size:.87rem;color:var(--smoke);line-height:1.6;margin-bottom:14px}
-.bc-meta{display:flex;align-items:center;gap:12px;font-size:.75rem;color:var(--ash)}
-.bc-read-more{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:.8rem;font-weight:700;color:var(--fire);
-  margin-top:14px;letter-spacing:.5px;
-  transition:gap .2s cubic-bezier(0.34,1.8,0.64,1);
-}
-.bento-card:hover .bc-read-more{gap:10px}
-/* Grid positions */
-.b1{grid-column:span 7}
-.b2{grid-column:span 5}
-.b3{grid-column:span 4}
-.b4{grid-column:span 4}
-.b5{grid-column:span 4}
-.b6{grid-column:span 6}
-.b7{grid-column:span 6}
-.b1 .bc-img{height:340px}
-.b2 .bc-img{height:340px}
-.b3 .bc-img,.b4 .bc-img,.b5 .bc-img{height:200px}
-.b6 .bc-img,.b7 .bc-img{height:240px}
-.b1 .bc-title{font-size:1.5rem}
-.b2 .bc-title{font-size:1.2rem}
-.b3 .bc-title,.b4 .bc-title,.b5 .bc-title{font-size:1rem}
-.b6 .bc-title,.b7 .bc-title{font-size:1.15rem}
-/* Load more */
-.load-more-wrap{text-align:center;margin-top:48px}
-.extra-posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-top:20px;display:none}
-.extra-posts.visible{display:grid}
 
-/* ═══ MARQUEE DIVIDER ═══ */
-.marquee-div{
-  padding:24px 0;overflow:hidden;
-  border-top:1px solid var(--chalk);border-bottom:1px solid var(--chalk);
-  margin:0 5%;
+.hero-actions {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0; transform: translateY(16px);
 }
-.marquee-track{display:flex;gap:0;white-space:nowrap;animation:ticker-scroll 20s linear infinite}
-.marquee-item{
-  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:4px;
-  color:var(--chalk);padding:0 28px;display:inline-flex;align-items:center;gap:20px;
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--fire); color: #fff;
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 16px 32px; border-radius: 50px;
+  text-decoration: none; cursor: pointer; border: none;
+  box-shadow: 0 8px 32px rgba(232,93,4,0.35);
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  position: relative; overflow: hidden;
 }
-.marquee-item .dot{width:8px;height:8px;background:var(--fire);border-radius:50%;flex-shrink:0}
+.btn-primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-101%);
+  transition: transform 0.4s;
+}
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(232,93,4,0.5); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; color: var(--text);
+  font-family: 'Syne', sans-serif; font-weight: 600;
+  font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 16px 32px; border-radius: 50px;
+  text-decoration: none; cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s;
+}
+.btn-ghost:hover { border-color: var(--fire); color: var(--fire); background: rgba(232,93,4,0.05); }
 
-/* ═══ NEWSLETTER ═══ */
-.nl-section{
-  padding:100px 5%;
-  background:var(--ink);
-  position:relative;overflow:hidden;
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0;
 }
-.nl-blob{
-  position:absolute;width:500px;height:500px;
-  border-radius:50%;filter:blur(100px);opacity:.2;
-  background:radial-gradient(var(--fire),transparent);
-  top:-100px;right:-100px;
-  animation:blob-float 10s ease-in-out infinite;
+.scroll-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--fire), transparent);
+  animation: scrollline 1.5s ease-in-out infinite;
 }
-.nl-inner{max-width:700px;margin:0 auto;text-align:center;position:relative;z-index:1}
-.nl-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--fire);margin-bottom:16px;display:block}
-.nl-title{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3rem,6vw,5.5rem);letter-spacing:2px;
-  color:#fff;line-height:.95;margin-bottom:20px;
+.scroll-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--dim);
 }
-.nl-sub{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--ash);font-size:1.1rem;margin-bottom:40px;line-height:1.6}
-.nl-form{display:flex;gap:10px;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-.nl-input{
-  flex:1;min-width:240px;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);
-  color:#fff;font-family:'DM Sans',sans-serif;font-size:.95rem;
-  padding:14px 22px;border-radius:50px;outline:none;
-  transition:border-color .2s;
-}
-.nl-input:focus{border-color:var(--fire)}
-.nl-input::placeholder{color:var(--smoke)}
-.nl-btn{
-  background:var(--grad-fire);color:#fff;border:none;
-  padding:14px 28px;border-radius:50px;
-  font-family:'DM Sans',sans-serif;font-weight:700;font-size:.9rem;
-  cursor:none;transition:all .2s;
-  box-shadow:var(--shadow-fire);
-}
-.nl-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,93,4,.45)}
+@keyframes scrollline { 0%,100%{opacity:1;transform:scaleY(1)} 50%{opacity:0.4;transform:scaleY(0.6)} }
 
-/* ═══ ARTICLE PAGE ═══ */
-#articlePage{display:none;background:var(--paper);min-height:100vh}
-.art-hero{
-  background:var(--ink);padding:120px 5% 60px;
-  position:relative;overflow:hidden;
+/* ══════════════════════════════════════════
+   STATS TICKER
+══════════════════════════════════════════ */
+.stats-ticker {
+  position: relative; z-index: 10;
+  padding: 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  background: rgba(8,8,8,0.6);
+  backdrop-filter: blur(12px);
 }
-.art-hero-blob{position:absolute;width:400px;height:400px;border-radius:50%;filter:blur(80px);opacity:.15;background:var(--fire);top:-50px;right:5%}
-.art-hero-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ash);margin-bottom:24px;flex-wrap:wrap}
-.breadcrumb a{color:var(--fire);text-decoration:none;cursor:none}
-.breadcrumb a:hover{text-decoration:underline}
-.art-hero h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.5rem);color:#fff;line-height:1.15;max-width:860px;margin-bottom:24px}
-.art-meta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:.82rem;color:var(--ash)}
-.art-tag{display:inline-block;background:rgba(232,93,4,.2);color:var(--fire);font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:50px}
-.art-hero-img{width:100%;max-width:860px;height:400px;object-fit:cover;border-radius:16px;margin-top:32px;display:block;background:linear-gradient(135deg,#1c2a3a,#2a3f52)}
-.art-hero-img.ph{display:flex;align-items:center;justify-content:center;font-size:6rem}
-.art-body{padding:60px 5%;max-width:860px;margin:0 auto}
-.art-body h2{font-family:'Fraunces',serif;font-weight:700;font-size:1.7rem;color:var(--ink);margin:44px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--chalk)}
-.art-body h3{font-size:1.1rem;font-weight:700;color:var(--fire);margin:28px 0 10px}
-.art-body p{color:#57534e;font-size:1.05rem;margin-bottom:20px;line-height:1.8}
-.art-body ul,.art-body ol{color:#57534e;padding-left:24px;margin-bottom:20px}
-.art-body li{margin-bottom:10px;line-height:1.7;font-size:1.05rem}
-.art-body strong{color:var(--ink);font-weight:600}
-.art-body a{color:var(--fire)}
-.art-body table{width:100%;border-collapse:collapse;margin:28px 0;font-size:.93rem}
-.art-body th{background:var(--warm);color:var(--ink);padding:12px 16px;text-align:left;border:1px solid var(--chalk);font-weight:700}
-.art-body td{padding:12px 16px;border:1px solid var(--chalk);color:var(--smoke)}
-.art-body tr:nth-child(even) td{background:rgba(0,0,0,.02)}
-.img-ph{background:var(--warm);border:1.5px dashed var(--chalk);border-radius:var(--r);padding:48px 24px;text-align:center;margin:28px 0;color:var(--ash);font-size:.9rem;font-family:'Fraunces',serif;font-style:italic}
-.img-ph span{font-size:3.5rem;display:block;margin-bottom:10px}
-.art-img{width:100%;border-radius:14px;display:block;object-fit:cover;margin:28px 0;background:linear-gradient(135deg,#1c2a3a,#2a3f52)}
-.art-img.ph{height:300px;display:flex;align-items:center;justify-content:center;font-size:4rem}
-.tip-box{background:rgba(232,93,4,.07);border-left:4px solid var(--fire);border-radius:0 12px 12px 0;padding:20px 22px;margin:24px 0}
-.tip-box strong{color:var(--fire);display:block;margin-bottom:7px;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase}
-.tip-box p,.tip-box a{margin:0;font-size:.95rem;color:#57534e}
-.warn-box{background:rgba(232,93,4,.06);border-left:4px solid #dc2626;border-radius:0 12px 12px 0;padding:20px 22px;margin:24px 0}
-.warn-box strong{color:#dc2626;display:block;margin-bottom:7px;font-size:.85rem;letter-spacing:.5px;text-transform:uppercase}
-.warn-box p{margin:0;font-size:.95rem;color:#57534e}
-.related-section{padding:0 5% 60px;max-width:1320px;margin:0 auto}
-.related-section h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;color:var(--ink);margin-bottom:20px}
-.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
-.rel-card{background:var(--card-bg);border:1.5px solid var(--chalk);border-radius:14px;overflow:hidden;text-decoration:none;display:block;cursor:none;transition:all .25s}
-.rel-card:hover{border-color:var(--fire);transform:translateY(-4px);box-shadow:var(--shadow-soft)}
-.rel-img{width:100%;height:130px;object-fit:cover;display:block;background:var(--warm)}
-.rel-img.ph{display:flex;align-items:center;justify-content:center;font-size:2.5rem}
-.rel-body{padding:14px}
-.rel-tag{font-size:.68rem;font-weight:700;color:var(--fire);letter-spacing:1px;text-transform:uppercase}
-.rel-title{font-family:'Fraunces',serif;font-weight:700;font-size:.9rem;color:var(--ink);margin-top:5px;line-height:1.4}
-
-/* ═══ FOOTER ═══ */
-footer{background:var(--ink);padding:80px 5% 32px}
-.foot-inner{max-width:1320px;margin:0 auto}
-.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
-.foot-brand p{color:var(--ash);font-size:.88rem;margin-top:16px;line-height:1.8;max-width:300px}
-.foot-col h4{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2.5px;color:rgba(255,255,255,.4);margin-bottom:20px}
-.foot-col a{display:block;color:var(--ash);text-decoration:none;font-size:.87rem;margin-bottom:10px;transition:color .2s;cursor:none}
-.foot-col a:hover{color:var(--fire)}
-.foot-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:28px;border-top:1px solid rgba(255,255,255,.06);font-size:.8rem;color:rgba(255,255,255,.25)}
-.foot-fire{color:var(--fire)}
-
-/* ═══ BACK TO TOP ═══ */
-#btt{
-  position:fixed;bottom:32px;right:32px;z-index:999;
-  width:48px;height:48px;border-radius:50%;
-  background:var(--grad-fire);color:#fff;border:none;
-  font-size:1.1rem;cursor:none;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:var(--shadow-fire);
-  transform:translateY(80px) scale(0);opacity:0;
-  transition:all .35s cubic-bezier(0.34,1.4,0.64,1);
+.stats-ticker-inner {
+  display: flex; gap: 0;
+  white-space: nowrap;
+  animation: ticker-scroll 24s linear infinite;
 }
-#btt.show{transform:translateY(0) scale(1);opacity:1}
-#btt:hover{transform:translateY(-4px) scale(1.1)}
+.stat-tick-item {
+  display: inline-flex; align-items: center; gap: 20px;
+  padding: 20px 48px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sti-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 600;
+  color: var(--fire); line-height: 1;
+}
+.sti-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+}
+@keyframes ticker-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-/* ═══ REVEAL ═══ */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
-.reveal.v{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-32px);transition:opacity .7s,transform .7s}
-.reveal-l.v{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(32px);transition:opacity .7s,transform .7s}
-.reveal-r.v{opacity:1;transform:none}
+/* ══════════════════════════════════════════
+   CATEGORIES
+══════════════════════════════════════════ */
+#categories { min-height: auto; padding: 140px 5%; }
+.section-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--fire); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.section-label::before {
+  content: ''; width: 32px; height: 1px; background: var(--fire);
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 300; line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  margin-bottom: 72px;
+}
+.section-title em { font-style: italic; color: rgba(240,235,227,0.5); }
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:1024px){
-  .b1,.b2{grid-column:span 12}.b3,.b4,.b5,.b6,.b7{grid-column:span 6}
-  .hero-inner{grid-template-columns:1fr;padding-top:140px}.hero-right{display:none}
-  .foot-top{grid-template-columns:1fr 1fr;gap:40px}
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.cat-item {
+  background: var(--surface);
+  padding: 40px 20px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 16px; cursor: pointer; text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: background 0.4s;
+}
+.cat-item::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--gf);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+}
+.cat-item:hover { background: var(--card); }
+.cat-item:hover::before { transform: scaleX(1); }
+.cat-glyph {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  transition: transform 0.4s cubic-bezier(0.34,1.8,0.64,1), border-color 0.3s;
+}
+.cat-item:hover .cat-glyph {
+  transform: scale(1.15) translateY(-3px);
+  border-color: rgba(232,93,4,0.4);
+}
+.cat-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--muted); text-align: center;
+  transition: color 0.3s;
+}
+.cat-item:hover .cat-name { color: var(--text); }
+.cat-count {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300;
+  color: var(--fire); line-height: 1;
+}
+
+/* ══════════════════════════════════════════
+   FEATURED POSTS
+══════════════════════════════════════════ */
+#posts { min-height: auto; padding: 0 5% 140px; }
+
+.posts-header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+}
+.filter-strip {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.filter-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted);
+  padding: 8px 16px; border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: none; cursor: pointer;
+  transition: all 0.25s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--fire); border-color: var(--fire);
+  color: #fff; box-shadow: 0 4px 20px rgba(232,93,4,0.3);
+}
+
+/* Masonry-style grid */
+.posts-masonry {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.post-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.4s, transform 0.4s cubic-bezier(0.34,1.2,0.64,1);
+  display: block; text-decoration: none;
+}
+.post-card:hover {
+  border-color: rgba(232,93,4,0.4);
+  transform: translateY(-6px);
+}
+.post-card:hover .card-overlay { opacity: 1; }
+.card-overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(232,93,4,0.08), transparent 60%);
+  opacity: 0; transition: opacity 0.4s; pointer-events: none;
+}
+.card-img {
+  width: 100%; object-fit: cover; display: block;
+  background: linear-gradient(135deg, #1a1a1a, #222);
+}
+.card-img.ph { display: flex; align-items: center; justify-content: center; }
+.card-body { padding: 22px 24px 26px; }
+.card-cat {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--fire); margin-bottom: 10px;
+}
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600; color: var(--text);
+  line-height: 1.25; margin-bottom: 10px;
+}
+.card-exc {
+  font-size: 0.85rem; color: var(--muted);
+  line-height: 1.65; margin-bottom: 18px;
+}
+.card-meta {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 0.73rem; color: var(--dim);
+}
+.card-arrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--fire); margin-top: 16px;
+  transition: gap 0.3s cubic-bezier(0.34,1.8,0.64,1);
+}
+.post-card:hover .card-arrow { gap: 10px; }
+
+/* Grid spans */
+.gc-7 { grid-column: span 7; }
+.gc-5 { grid-column: span 5; }
+.gc-4 { grid-column: span 4; }
+.gc-6 { grid-column: span 6; }
+.gc-7 .card-img, .gc-5 .card-img { height: 320px; }
+.gc-4 .card-img, .gc-6 .card-img { height: 200px; }
+.gc-7 .card-img.ph, .gc-5 .card-img.ph { font-size: 4.5rem; }
+.gc-4 .card-img.ph, .gc-6 .card-img.ph { font-size: 3rem; }
+.gc-7 .card-title { font-size: 1.6rem; }
+.gc-5 .card-title { font-size: 1.25rem; }
+.gc-4 .card-title, .gc-6 .card-title { font-size: 1.05rem; }
+
+/* Extra posts */
+.extra-posts {
+  display: none;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px; margin-top: 16px;
+}
+.extra-posts.show { display: grid; }
+.extra-posts .card-img { height: 180px; }
+.extra-posts .card-img.ph { font-size: 2.8rem; }
+.extra-posts .card-title { font-size: 1rem; }
+
+/* Pagination */
+.pagination {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 48px;
+}
+.pg-btn {
+  width: 38px; height: 38px; border-radius: 8px;
+  border: 1px solid var(--border);
+  background: none; color: var(--muted);
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.pg-btn:hover, .pg-btn.active {
+  background: var(--fire); border-color: var(--fire); color: #fff;
+}
+.pg-prev, .pg-next { width: auto; padding: 0 16px; }
+
+/* ══════════════════════════════════════════
+   ABOUT / MANIFESTO
+══════════════════════════════════════════ */
+#about {
+  min-height: auto;
+  padding: 120px 5%;
+  position: relative; z-index: 10;
+  border-top: 1px solid var(--border);
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 100px; align-items: center;
+}
+.about-left {}
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 300; font-style: italic;
+  line-height: 1.35; color: var(--text);
+  margin-bottom: 32px;
+}
+.about-quote strong { font-weight: 600; font-style: normal; color: var(--fire); }
+.about-body {
+  font-size: 0.95rem; color: var(--muted);
+  line-height: 1.85; margin-bottom: 36px;
+}
+.about-right {}
+.about-stats {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--r);
+  overflow: hidden;
+}
+.about-stat {
+  background: var(--surface);
+  padding: 36px 28px;
+}
+.as-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem; font-weight: 300;
+  color: var(--text); line-height: 1;
+  margin-bottom: 6px;
+}
+.as-num span { color: var(--fire); font-size: 2rem; }
+.as-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.68rem; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ══════════════════════════════════════════
+   NEWSLETTER
+══════════════════════════════════════════ */
+#newsletter {
+  min-height: auto;
+  padding: 120px 5%;
+  position: relative; z-index: 10;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+.nl-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(var(--fire), transparent 70%);
+  opacity: 0.06;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.nl-inner {
+  max-width: 640px; margin: 0 auto;
+  text-align: center; position: relative; z-index: 1;
+}
+.nl-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300; font-style: italic;
+  line-height: 1; color: var(--text);
+  margin-bottom: 20px;
+}
+.nl-sub {
+  font-size: 0.95rem; color: var(--muted);
+  line-height: 1.75; margin-bottom: 40px;
+}
+.nl-form {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+}
+.nl-input {
+  flex: 1; min-width: 240px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.93rem;
+  padding: 14px 22px; border-radius: 50px;
+  outline: none; transition: border-color 0.2s;
+}
+.nl-input:focus { border-color: var(--fire); }
+.nl-input::placeholder { color: var(--dim); }
+
+/* ══════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════ */
+footer {
+  position: relative; z-index: 10;
+  padding: 80px 5% 36px;
+  border-top: 1px solid var(--border);
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 64px; max-width: 1400px; margin: 0 auto 56px;
+}
+.footer-brand p {
+  font-size: 0.85rem; color: var(--muted);
+  line-height: 1.85; margin-top: 20px; max-width: 280px;
+}
+.footer-col h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: 20px;
+}
+.footer-col a {
+  display: block; font-size: 0.85rem; color: var(--muted);
+  text-decoration: none; margin-bottom: 10px;
+  cursor: pointer; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--fire); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+  padding-top: 28px; border-top: 1px solid var(--border);
+  max-width: 1400px; margin: 0 auto;
+  font-size: 0.78rem; color: var(--dim);
+  font-family: 'Syne', sans-serif; letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════════════
+   ARTICLE PAGE
+══════════════════════════════════════════ */
+#art-page {
+  display: none;
+  position: relative; z-index: 10;
+  background: var(--void);
+  min-height: 100vh;
+  padding-top: 72px;
+}
+.art-hero-section {
+  padding: 80px 5% 56px;
+  border-bottom: 1px solid var(--border);
+  max-width: 1400px; margin: 0 auto;
+}
+.art-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.75rem; color: var(--dim);
+  margin-bottom: 28px; flex-wrap: wrap;
+  font-family: 'Syne', sans-serif; letter-spacing: 0.5px;
+}
+.art-breadcrumb a { color: var(--fire); text-decoration: none; cursor: pointer; }
+.art-breadcrumb a:hover { text-decoration: underline; }
+.art-tag {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--fire);
+  border: 1px solid rgba(232,93,4,0.3);
+  padding: 4px 12px; border-radius: 50px;
+  display: inline-block; margin-bottom: 18px;
+}
+.art-hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600; font-size: clamp(2rem, 4.5vw, 3.5rem);
+  color: var(--text); line-height: 1.1;
+  max-width: 840px; margin-bottom: 24px;
+}
+.art-meta {
+  display: flex; align-items: center; gap: 18px;
+  font-size: 0.78rem; color: var(--dim); flex-wrap: wrap;
+  font-family: 'Syne', sans-serif; letter-spacing: 0.5px;
+}
+.art-hero-img {
+  width: 100%; max-width: 840px; height: 440px;
+  object-fit: cover; border-radius: var(--r);
+  margin-top: 36px; display: block;
+  background: var(--surface);
+}
+.art-hero-img.ph { display: flex; align-items: center; justify-content: center; font-size: 6rem; }
+.art-body-wrap {
+  max-width: 740px; margin: 0 auto;
+  padding: 64px 5%;
+}
+.art-body-wrap h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.9rem; font-weight: 600;
+  color: var(--text); margin: 52px 0 18px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+.art-body-wrap h3 {
+  font-size: 1rem; font-weight: 600;
+  font-family: 'Syne', sans-serif; letter-spacing: 0.5px;
+  color: var(--fire); margin: 32px 0 12px;
+}
+.art-body-wrap p {
+  font-size: 1.05rem; color: rgba(240,235,227,0.7);
+  line-height: 1.9; margin-bottom: 20px;
+}
+.art-body-wrap ul, .art-body-wrap ol {
+  color: rgba(240,235,227,0.7); padding-left: 24px; margin-bottom: 20px;
+}
+.art-body-wrap li { margin-bottom: 10px; line-height: 1.8; font-size: 1.05rem; }
+.art-body-wrap strong { color: var(--text); font-weight: 600; }
+.art-body-wrap a { color: var(--fire); }
+.art-body-wrap table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 0.9rem; }
+.art-body-wrap th { background: var(--surface); color: var(--text); padding: 12px 16px; border: 1px solid var(--border); font-family: 'Syne', sans-serif; font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; }
+.art-body-wrap td { padding: 12px 16px; border: 1px solid var(--border); color: var(--muted); }
+.tip-box {
+  background: rgba(232,93,4,0.06);
+  border-left: 3px solid var(--fire);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 22px; margin: 24px 0;
+}
+.tip-box strong { color: var(--fire); display: block; margin-bottom: 7px; font-family: 'Syne', sans-serif; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+.tip-box p { margin: 0; font-size: 0.95rem; color: var(--muted); }
+.warn-box {
+  background: rgba(220,38,38,0.06);
+  border-left: 3px solid #dc2626;
+  border-radius: 0 12px 12px 0;
+  padding: 20px 22px; margin: 24px 0;
+}
+.warn-box strong { color: #dc2626; display: block; margin-bottom: 7px; font-family: 'Syne', sans-serif; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+.warn-box p { margin: 0; font-size: 0.95rem; color: var(--muted); }
+.rel-section { padding: 0 5% 64px; max-width: 1400px; margin: 0 auto; }
+.rel-section h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-weight: 300; font-style: italic;
+  color: var(--text); margin-bottom: 24px;
+}
+.rel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.rel-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden;
+  cursor: pointer; transition: all 0.3s; text-decoration: none; display: block;
+}
+.rel-card:hover { border-color: rgba(232,93,4,0.4); transform: translateY(-3px); }
+.rel-card img { width: 100%; height: 110px; object-fit: cover; display: block; background: var(--surface); }
+.rel-card img.ph { display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.rel-body { padding: 12px 14px; }
+.rel-tag { font-family: 'Syne', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--fire); }
+.rel-title { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 0.95rem; color: var(--text); margin-top: 5px; line-height: 1.35; }
+
+/* ══════════════════════════════════════════
+   BACK TO TOP + TOAST
+══════════════════════════════════════════ */
+#btt {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--fire); color: #fff; border: none;
+  font-size: 0.9rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 28px rgba(232,93,4,0.4);
+  transform: translateY(80px) scale(0); opacity: 0;
+  transition: all 0.4s cubic-bezier(0.34,1.4,0.64,1);
+}
+#btt.show { transform: none; opacity: 1; }
+#btt:hover { transform: translateY(-3px) scale(1.1); }
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 24px; border-radius: 50px;
+  font-family: 'Syne', sans-serif; font-size: 0.8rem; letter-spacing: 0.5px;
+  z-index: 9999; transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  white-space: nowrap; pointer-events: none;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.success { background: var(--fire); border-color: var(--fire); }
+
+/* ══════════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════════ */
+#admin-wrap {
+  display: none; position: fixed; inset: 0; z-index: 9000;
+  background: rgba(0,0,0,0.8); backdrop-filter: blur(12px);
+  align-items: center; justify-content: center;
+}
+#admin-wrap.show { display: flex; }
+.admin-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  width: min(920px, 94vw);
+  max-height: 88vh;
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6);
+}
+.adm-top {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; gap: 4px;
+  flex-shrink: 0;
+}
+.adm-brand {
+  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--text);
+  padding: 18px 0; margin-right: 20px;
+}
+.adm-brand span { color: var(--fire); }
+.adm-t {
+  background: none; border: none; border-bottom: 2px solid transparent;
+  color: var(--muted); font-family: 'Syne', sans-serif;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 18px 14px;
+  cursor: pointer; transition: color 0.2s, border-color 0.2s;
+}
+.adm-t.active, .adm-t:hover { color: var(--text); border-bottom-color: var(--fire); }
+.adm-x {
+  margin-left: auto; background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border); color: var(--muted);
+  width: 30px; height: 30px; border-radius: 8px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.adm-x:hover { background: rgba(232,93,4,0.2); color: var(--fire); }
+.adm-body { overflow-y: auto; padding: 28px; flex: 1; }
+.adm-pane { display: none; }
+.adm-pane.active { display: block; }
+
+/* Login */
+.login-box { max-width: 360px; margin: 32px auto; text-align: center; }
+.login-box .licon { font-size: 2.5rem; margin-bottom: 16px; }
+.login-box h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.login-box p { font-size: 0.83rem; color: var(--muted); margin-bottom: 28px; }
+.adm-field {
+  width: 100%; padding: 12px 18px;
+  background: var(--void); border: 1px solid var(--border);
+  border-radius: 10px; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  outline: none; transition: border-color 0.2s; margin-bottom: 12px;
+}
+.adm-field:focus { border-color: var(--fire); }
+.adm-field::placeholder { color: var(--dim); }
+.adm-login-btn {
+  width: 100%; background: var(--fire); color: #fff;
+  border: none; padding: 13px; border-radius: 10px;
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; box-shadow: 0 8px 28px rgba(232,93,4,0.3); transition: all 0.2s;
+}
+.adm-login-btn:hover { background: var(--ember); transform: translateY(-1px); }
+.adm-err { color: #ef4444; font-size: 0.8rem; margin-top: 10px; display: none; }
+
+/* Admin form + list */
+.stats-g { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 28px; }
+.s-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+.s-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--fire); line-height: 1; }
+.s-lbl { font-family: 'Syne', sans-serif; font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.art-row { display: flex; align-items: center; justify-content: space-between; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; gap: 12px; flex-wrap: wrap; }
+.ar-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(232,93,4,0.1); border: 1px solid rgba(232,93,4,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.ar-title { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.ar-cat { font-family: 'Syne', sans-serif; font-size: 0.65rem; letter-spacing: 1px; color: var(--muted); margin-top: 2px; }
+.ar-actions { display: flex; gap: 7px; flex-shrink: 0; }
+.ar-btn { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 5px 12px; color: var(--muted); font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+.ar-btn:hover { border-color: var(--fire); color: var(--fire); }
+.ar-del:hover { border-color: #ef4444; color: #ef4444; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.form-r1 { margin-bottom: 12px; }
+.adm-label { font-family: 'Syne', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 5px; }
+.adm-sel { width: 100%; padding: 11px 14px; background: var(--void); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; }
+.adm-sel:focus { border-color: var(--fire); }
+.adm-ta { width: 100%; padding: 12px 14px; background: var(--void); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; outline: none; resize: vertical; min-height: 180px; line-height: 1.6; }
+.adm-ta:focus { border-color: var(--fire); }
+.form-actions { display: flex; gap: 10px; margin-top: 18px; }
+.adm-save { background: var(--fire); color: #fff; border: none; padding: 11px 24px; border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+.adm-save:hover { background: var(--ember); }
+.adm-cancel { background: var(--card); color: var(--muted); border: 1px solid var(--border); padding: 11px 20px; border-radius: 8px; font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+.adm-new { background: var(--fire); color: #fff; border: none; padding: 9px 18px; border-radius: 8px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; box-shadow: 0 4px 16px rgba(232,93,4,0.3); transition: all 0.2s; }
+.adm-new:hover { background: var(--ember); transform: translateY(-1px); }
+.adm-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.adm-toolbar h3 { font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text); }
+.recent-item { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .cats-grid { grid-template-columns: repeat(4,1fr); }
+  .gc-7,.gc-5 { grid-column: span 12; }
+  .gc-4,.gc-6 { grid-column: span 6; }
+  .about-grid { grid-template-columns: 1fr; gap: 60px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .stats-g { grid-template-columns: repeat(2,1fr); }
 }
 @media(max-width:768px){
-  .nav-links{display:none}.hamburger{display:flex}
-  .b3,.b4,.b5,.b6,.b7{grid-column:span 12}
-  .hero-headline{font-size:clamp(3rem,12vw,5rem)}
-  .foot-top{grid-template-columns:1fr;gap:32px}
-  #cursor,#cursor-ring{display:none}
-  body{cursor:auto}
-  .btn-fire,.btn-ghost,.hfc-read,.cat-pill,.bento-card,.sec-link,.rel-card,.foot-col a,.nav-logo,.mobile-menu a,.nl-btn{cursor:pointer}
+  .nav-links { display: none; }
+  .ham { display: flex; }
+  .cats-grid { grid-template-columns: repeat(3,1fr); }
+  .gc-4,.gc-6 { grid-column: span 12; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
 }
-@media(max-width:480px){.hero-stats{gap:20px}.cats-section,.posts-section{padding-left:4%;padding-right:4%}}
+@media(max-width:480px){
+  .cats-grid { grid-template-columns: repeat(2,1fr); }
+  .hero-headline { font-size: clamp(3rem,13vw,5rem); }
+}
 </style>
 </head>
 <body>
 
-<!-- CURSOR -->
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
+<div class="toast" id="toast"></div>
 
-<!-- WELCOME SCREEN -->
-<div id="welcome">
-  <div class="hero-blob" style="width:400px;height:400px;top:-50px;right:-50px;opacity:.15"></div>
-  <div id="welcome-logo">
-    <svg viewBox="0 0 64 64" fill="none">
-      <defs><linearGradient id="wg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse"><stop stop-color="#e85d04"/><stop offset="1" stop-color="#ffd60a"/></linearGradient></defs>
-      <path d="M32 6L5 26h6v28h14v-13h14v13h14V26h6L32 6z" fill="url(#wg)"/>
-      <path d="M40 32a6 6 0 0 0-5.8 7.5L25 49a2.5 2.5 0 0 0 3.5 3.5l9.2-9.2A6 6 0 1 0 40 32zm0 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" fill="#fff" opacity=".95"/>
-    </svg>
-    <div>
-      <div id="welcome-wordmark">Fix<span>Home</span>Fast</div>
-      <div id="welcome-tagline">Every home problem. One solution.</div>
-    </div>
-  </div>
-  <div id="welcome-bar"></div>
-  <div id="welcome-overlay"></div>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo" id="loaderLogo">Fix<span>Home</span>Fast</div>
+  <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+  <div class="loader-pct" id="loaderPct">0%</div>
 </div>
 
+<!-- THREE.JS CANVAS -->
+<canvas id="three-canvas"></canvas>
+
 <!-- NAV -->
-<nav id="mainNav">
-  <div class="nav-inner">
+<nav id="nav">
+  <div class="nav-in">
     <a class="nav-logo" onclick="showHome()">
-      <svg viewBox="0 0 42 42" fill="none">
-        <defs><linearGradient id="ng" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#e85d04"/><stop offset="1" stop-color="#ffd60a"/></linearGradient></defs>
-        <path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#ng)"/>
-        <path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity=".92"/>
+      <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none">
+        <defs><linearGradient id="nlg" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#e85d04"/><stop offset="1" stop-color="#ffd060"/></linearGradient></defs>
+        <path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#nlg)"/>
+        <path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity=".9"/>
       </svg>
-      <span class="nav-wordmark">Fix<span>Home</span>Fast</span>
+      <span class="nav-logo-text">Fix<span>Home</span>Fast</span>
     </a>
     <div class="nav-links">
-      <a href="#categories" onclick="showHome()"><span>Categories</span></a>
-      <a href="#posts" onclick="showHome()"><span>Articles</span></a>
-      <a href="#newsletter" onclick="showHome()"><span>Newsletter</span></a>
-      <a onclick="showHome()" class="nav-cta"><span>Browse All Tips →</span></a>
+      <button class="nav-link" onclick="scrollToId('categories')">Categories</button>
+      <button class="nav-link" onclick="scrollToId('posts')">Articles</button>
+      <button class="nav-link" onclick="scrollToId('about')">About</button>
+      <button class="nav-link" onclick="scrollToId('newsletter')">Newsletter</button>
+      <button class="nav-link nav-cta" onclick="openAdmin()">⚙ Admin</button>
     </div>
-    <button class="hamburger" id="ham" onclick="toggleMob()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="ham" id="ham" onclick="toggleMob()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobMenu">
-  <a onclick="showHome();toggleMob()">Home</a>
-  <a onclick="filterCat('Stain Removal');toggleMob()">Stain Removal</a>
-  <a onclick="filterCat('Home Cleaning');toggleMob()">Home Cleaning</a>
-  <a onclick="filterCat('Pest Control');toggleMob()">Pest Control</a>
-  <a onclick="filterCat('Bathroom Fixes');toggleMob()">Bathroom</a>
-  <a onclick="filterCat('Kitchen Fixes');toggleMob()">Kitchen</a>
-  <a onclick="filterCat('Home Repair');toggleMob()">Home Repair</a>
+<div class="mob-nav" id="mobNav">
+  <a onclick="showHome();closeMob()">Home</a>
+  <a onclick="scrollToId('categories');closeMob()">Categories</a>
+  <a onclick="scrollToId('posts');closeMob()">Articles</a>
+  <a onclick="scrollToId('about');closeMob()">About</a>
+  <a onclick="openAdmin();closeMob()">Admin</a>
 </div>
 
 <!-- HOME PAGE -->
-<main id="homePage">
+<div id="home-page">
 
   <!-- HERO -->
-  <section id="hero">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-blob blob-1"></div>
-    <div class="hero-blob blob-2"></div>
-    <div class="hero-blob blob-3"></div>
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-eyebrow">Trusted by 50,000+ homeowners</div>
-        <h1 class="hero-headline">
-          <span class="line">FIX IT.</span>
-          <span class="line">CLEAN IT.</span>
-          <span class="line">OWN IT.</span>
+  <section class="section" id="hero">
+    <div class="section-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow" id="heroEye">Trusted by 50,000 homeowners</div>
+        <h1 class="hero-headline" id="heroH1">
+          Every <em>Home<br>Problem.</em><br>One Solution.
         </h1>
-        <p class="hero-sub">Step-by-step DIY solutions for every home problem. From stubborn stains to broken faucets — we've got you covered.</p>
-        <div class="hero-actions">
-          <button class="btn-fire" onclick="document.getElementById('posts').scrollIntoView({behavior:'smooth'})">
-            Explore Articles <span class="arr">→</span>
-          </button>
-          <button class="btn-ghost" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">
-            Browse Categories
-          </button>
-        </div>
-        <div class="hero-stats">
-          <div class="h-stat"><div class="h-stat-n">100+</div><div class="h-stat-l">Articles</div></div>
-          <div class="h-stat"><div class="h-stat-n">7</div><div class="h-stat-l">Categories</div></div>
-          <div class="h-stat"><div class="h-stat-n">Free</div><div class="h-stat-l">Always</div></div>
+        <p class="hero-sub" id="heroSub">
+          Cinematic guides for stain removal, pest control, bathroom repairs, kitchen fixes — all written for real people who want real results.
+        </p>
+        <div class="hero-actions" id="heroActions">
+          <button class="btn-primary" onclick="scrollToId('posts')">Explore Guides <span>→</span></button>
+          <button class="btn-ghost" onclick="scrollToId('categories')">Browse Categories</button>
         </div>
       </div>
-      <div class="hero-right">
-        <div class="hero-feat-card" onclick="openArticle('oil-stain')">
-          <img class="hfc-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=300&fit=crop&auto=format" alt="Stain removal tips" loading="lazy" onerror="this.classList.add('placeholder');this.innerHTML='🧴'"/>
-          <div class="hfc-body">
-            <span class="hfc-tag">⭐ Editor's Pick</span>
-            <div class="hfc-title">How to Remove Oil Stains from Clothes Fast</div>
-            <div class="hfc-meta"><span>🧴 Stain Removal</span><span>⏱ 5 min read</span></div>
-            <button class="hfc-read">Read Article →</button>
+      <div class="scroll-indicator" id="scrollInd">
+        <div class="scroll-line"></div>
+        <div class="scroll-text">Scroll</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS TICKER -->
+  <div class="stats-ticker" id="statsTicker">
+    <div class="stats-ticker-inner">
+      <div class="stat-tick-item"><div class="sti-num" id="artCountTick">20+</div><div class="sti-label">Expert Articles</div></div>
+      <div class="stat-tick-item"><div class="sti-num">7</div><div class="sti-label">Categories</div></div>
+      <div class="stat-tick-item"><div class="sti-num">100%</div><div class="sti-label">Free Forever</div></div>
+      <div class="stat-tick-item"><div class="sti-num">DIY</div><div class="sti-label">Step by Step</div></div>
+      <div class="stat-tick-item"><div class="sti-num">50K+</div><div class="sti-label">Homeowners</div></div>
+      <div class="stat-tick-item"><div class="sti-num">⭐ 4.9</div><div class="sti-label">User Rating</div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="stat-tick-item"><div class="sti-num" id="artCountTick2">20+</div><div class="sti-label">Expert Articles</div></div>
+      <div class="stat-tick-item"><div class="sti-num">7</div><div class="sti-label">Categories</div></div>
+      <div class="stat-tick-item"><div class="sti-num">100%</div><div class="sti-label">Free Forever</div></div>
+      <div class="stat-tick-item"><div class="sti-num">DIY</div><div class="sti-label">Step by Step</div></div>
+      <div class="stat-tick-item"><div class="sti-num">50K+</div><div class="sti-label">Homeowners</div></div>
+      <div class="stat-tick-item"><div class="sti-num">⭐ 4.9</div><div class="sti-label">User Rating</div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <section id="categories" style="position:relative;z-index:10;padding:140px 5%">
+    <div class="section-inner" style="padding:0;max-width:1400px;margin:0 auto">
+      <div class="section-label" id="catLabel">Browse Topics</div>
+      <h2 class="section-title" id="catTitle">Every Corner of <em>Your Home</em></h2>
+      <div class="cats-grid" id="catsGrid"></div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  <section id="posts" style="position:relative;z-index:10;padding:0 5% 140px">
+    <div style="max-width:1400px;margin:0 auto">
+      <div class="posts-header">
+        <div>
+          <div class="section-label" id="postsLabel">Latest Articles</div>
+          <h2 class="section-title" style="margin-bottom:0" id="postsTitle">Fresh from the<br><em>Toolbox</em></h2>
+        </div>
+        <div id="filterArea">
+          <div class="filter-strip" id="filterStrip"></div>
+          <button id="clearFilterBtn" onclick="clearFilter()" style="display:none;margin-top:8px;background:none;border:1px solid rgba(232,93,4,0.4);color:var(--fire);padding:6px 16px;border-radius:50px;font-family:'Syne',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;">✕ Clear Filter</button>
+        </div>
+      </div>
+      <div class="posts-masonry" id="bentoGrid"></div>
+      <div class="extra-posts" id="extraGrid"></div>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="position:relative;z-index:10">
+    <div class="section-inner" style="max-width:1400px;margin:0 auto;padding:120px 5%">
+      <div class="about-grid">
+        <div class="about-left">
+          <div class="section-label" id="aboutLabel">Our Philosophy</div>
+          <blockquote class="about-quote">
+            "Every problem in your home has a <strong>simple solution</strong> — you just need someone to show you."
+          </blockquote>
+          <p class="about-body">
+            FixHomeFast was built on a simple belief: homeowners shouldn't need to spend hundreds on professionals for everyday repairs. With the right knowledge, 90% of home problems can be solved in under an hour with things you already own.
+          </p>
+          <p class="about-body">
+            Every guide is written by real people who've faced the same problems — not algorithms, not generic advice. We test every method before we publish it.
+          </p>
+          <button class="btn-primary" onclick="scrollToId('posts')" style="margin-top:8px">Read Our Guides →</button>
+        </div>
+        <div class="about-right">
+          <div class="about-stats">
+            <div class="about-stat"><div class="as-num"><span id="statArt">20</span><span>+</span></div><div class="as-label">Published Guides</div></div>
+            <div class="about-stat"><div class="as-num">7<span></span></div><div class="as-label">Home Categories</div></div>
+            <div class="about-stat"><div class="as-num">50<span>K+</span></div><div class="as-label">Monthly Readers</div></div>
+            <div class="about-stat"><div class="as-num">4.9<span>★</span></div><div class="as-label">Average Rating</div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TICKER -->
-  <div class="ticker-wrap">
-    <div class="ticker" id="tickerTrack">
-      <span class="ticker-item">Stain Removal</span>
-      <span class="ticker-item">Home Cleaning</span>
-      <span class="ticker-item">Pest Control</span>
-      <span class="ticker-item">Bathroom Fixes</span>
-      <span class="ticker-item">Kitchen Fixes</span>
-      <span class="ticker-item">Home Repair</span>
-      <span class="ticker-item">Room Comfort</span>
-      <span class="ticker-item">Stain Removal</span>
-      <span class="ticker-item">Home Cleaning</span>
-      <span class="ticker-item">Pest Control</span>
-      <span class="ticker-item">Bathroom Fixes</span>
-      <span class="ticker-item">Kitchen Fixes</span>
-      <span class="ticker-item">Home Repair</span>
-      <span class="ticker-item">Room Comfort</span>
-    </div>
-  </div>
-
-  <!-- CATEGORIES -->
-  <section class="cats-section" id="categories">
-    <div class="cats-inner">
-      <div class="sec-header reveal">
-        <div>
-          <div class="sec-eyebrow">Browse Topics</div>
-          <h2 class="sec-title">EVERY CORNER<br>OF YOUR HOME</h2>
-        </div>
-        <a class="sec-link" onclick="clearFilter()">View All Articles →</a>
-      </div>
-      <div class="cats-scroll reveal">
-        <a class="cat-pill" onclick="filterCat('Stain Removal')"><div class="cat-emoji">🧴</div><div class="cat-label">Stain Removal</div><div class="cat-num">18 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Home Cleaning')"><div class="cat-emoji">🧹</div><div class="cat-label">Home Cleaning</div><div class="cat-num">16 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Pest Control')"><div class="cat-emoji">🐛</div><div class="cat-label">Pest Control</div><div class="cat-num">14 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Bathroom Fixes')"><div class="cat-emoji">🚿</div><div class="cat-label">Bathroom Fixes</div><div class="cat-num">15 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Kitchen Fixes')"><div class="cat-emoji">🍳</div><div class="cat-label">Kitchen Fixes</div><div class="cat-num">15 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Home Repair')"><div class="cat-emoji">🔨</div><div class="cat-label">Home Repair</div><div class="cat-num">14 articles</div></a>
-        <a class="cat-pill" onclick="filterCat('Room Comfort')"><div class="cat-emoji">🛋️</div><div class="cat-label">Room Comfort</div><div class="cat-num">8 articles</div></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- POSTS -->
-  <section class="posts-section" id="posts">
-    <div class="posts-inner">
-      <div class="sec-header reveal">
-        <div>
-          <div class="sec-eyebrow" id="postsEyebrow">Latest Articles</div>
-          <h2 class="sec-title" id="postsTitle">FRESH FROM<br>THE TOOLBOX</h2>
-        </div>
-        <button id="clearBtn" onclick="clearFilter()" style="display:none;background:var(--warm);border:1.5px solid var(--chalk);color:var(--smoke);padding:8px 18px;border-radius:50px;cursor:none;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:600;transition:all .2s">✕ Clear Filter</button>
-      </div>
-      <div class="bento reveal" id="bentoGrid"></div>
-      <div class="extra-posts reveal" id="extraGrid"></div>
-      <div class="load-more-wrap reveal">
-        <button class="btn-fire" id="loadMoreBtn" onclick="loadMore()">Load More Articles <span class="arr">↓</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE DIVIDER -->
-  <div class="marquee-div">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="dot"></span>FIX IT YOURSELF</span>
-      <span class="marquee-item"><span class="dot"></span>SAVE MONEY</span>
-      <span class="marquee-item"><span class="dot"></span>CLEAN SMARTER</span>
-      <span class="marquee-item"><span class="dot"></span>REPAIR FASTER</span>
-      <span class="marquee-item"><span class="dot"></span>NO PLUMBER NEEDED</span>
-      <span class="marquee-item"><span class="dot"></span>FIX IT YOURSELF</span>
-      <span class="marquee-item"><span class="dot"></span>SAVE MONEY</span>
-      <span class="marquee-item"><span class="dot"></span>CLEAN SMARTER</span>
-      <span class="marquee-item"><span class="dot"></span>REPAIR FASTER</span>
-      <span class="marquee-item"><span class="dot"></span>NO PLUMBER NEEDED</span>
-    </div>
-  </div>
-
   <!-- NEWSLETTER -->
-  <section class="nl-section" id="newsletter">
-    <div class="nl-blob"></div>
-    <div class="nl-inner reveal">
-      <span class="nl-eyebrow">Free Weekly Digest</span>
-      <h2 class="nl-title">HOME TIPS<br>EVERY WEEK</h2>
-      <p class="nl-sub">Join 8,000+ homeowners getting our best DIY guides straight to their inbox. No spam, ever.</p>
-      <div class="nl-form">
-        <input class="nl-input" type="email" placeholder="your@email.com" id="nlEmail"/>
-        <button class="nl-btn" onclick="nlSubscribe()">Subscribe Free</button>
+  <section id="newsletter" style="position:relative;z-index:10">
+    <div class="nl-glow"></div>
+    <div class="section-inner" style="max-width:1400px;margin:0 auto;padding:120px 5%">
+      <div class="nl-inner">
+        <div class="section-label" style="justify-content:center;margin-bottom:20px">Weekly digest</div>
+        <h2 class="nl-title">Stay Ahead of Every<br>Home Problem</h2>
+        <p class="nl-sub">Join 8,000+ homeowners getting our best DIY guides every week. Free, useful, no spam.</p>
+        <div class="nl-form">
+          <input class="nl-input" type="email" placeholder="your@email.com" id="nlEmail"/>
+          <button class="btn-primary" onclick="nlSub()">Subscribe Free</button>
+        </div>
+        <p id="nlMsg" style="color:var(--fire);margin-top:14px;display:none;font-size:0.85rem;font-family:'Syne',sans-serif;letter-spacing:0.5px">✓ You're in. Check your inbox.</p>
       </div>
-      <p id="nlMsg" style="color:var(--fire);margin-top:14px;display:none;font-size:.9rem">✅ You're in! Check your inbox.</p>
     </div>
   </section>
 
-</main>
+</div><!-- /home-page -->
 
 <!-- ARTICLE PAGE -->
-<div id="articlePage">
-  <div id="artContent"></div>
-  <div id="relContent"></div>
+<div id="art-page">
+  <div class="art-hero-section" id="artHero"></div>
+  <div id="artBodyWrap"></div>
+  <div id="artRel"></div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="foot-inner">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a class="nav-logo" onclick="showHome()" style="display:inline-flex">
-          <svg viewBox="0 0 42 42" fill="none" style="width:32px;height:32px"><defs><linearGradient id="fg" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#e85d04"/><stop offset="1" stop-color="#ffd60a"/></linearGradient></defs><path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#fg)"/><path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity=".92"/></svg>
-          <span class="nav-wordmark">Fix<span>Home</span>Fast</span>
-        </a>
-        <p>Practical, honest home repair and cleaning advice for real people. No fluff — just solutions that work.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Categories</h4>
-        <a onclick="filterCat('Stain Removal')">Stain Removal</a>
-        <a onclick="filterCat('Home Cleaning')">Home Cleaning</a>
-        <a onclick="filterCat('Pest Control')">Pest Control</a>
-        <a onclick="filterCat('Bathroom Fixes')">Bathroom Fixes</a>
-        <a onclick="filterCat('Kitchen Fixes')">Kitchen Fixes</a>
-        <a onclick="filterCat('Home Repair')">Home Repair</a>
-        <a onclick="filterCat('Room Comfort')">Room Comfort</a>
-      </div>
-      <div class="foot-col">
-        <h4>Popular</h4>
-        <a onclick="openArticle('oil-stain')">Remove Oil Stains</a>
-        <a onclick="openArticle('cockroach')">Cockroach Control</a>
-        <a onclick="openArticle('dripping-faucet')">Fix Dripping Faucet</a>
-        <a onclick="openArticle('deep-clean')">Deep Clean Bathroom</a>
-        <a onclick="openArticle('gas-burner')">Gas Burner Fix</a>
-      </div>
-      <div class="foot-col">
-        <h4>Site</h4>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Disclaimer</a>
-        <a href="#">Sitemap</a>
-      </div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" onclick="showHome()" style="display:inline-flex">
+        <svg class="nav-logo-icon" viewBox="0 0 42 42" fill="none">
+          <defs><linearGradient id="flg" x1="0" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#e85d04"/><stop offset="1" stop-color="#ffd060"/></linearGradient></defs>
+          <path d="M21 5L4 18h4v16h10v-9h6v9h10V18h4L21 5z" fill="url(#flg)"/>
+          <path d="M27 22a4 4 0 0 0-3.87 5l-6 6a1.5 1.5 0 0 0 2.12 2.12l6-6A4 4 0 1 0 27 22zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#fff" opacity=".9"/>
+        </svg>
+        <span class="nav-logo-text">Fix<span>Home</span>Fast</span>
+      </a>
+      <p>Practical, honest DIY home repair and cleaning advice. No fluff — just solutions that actually work.</p>
     </div>
-    <div class="foot-bottom">
-      <span>© 2025 <span class="foot-fire">FixHomeFast</span>. All rights reserved.</span>
-      <span>Built for homeowners who fix things themselves.</span>
+    <div class="footer-col"><h4>Categories</h4>
+      <a onclick="filterCat('Stain Removal')">Stain Removal</a>
+      <a onclick="filterCat('Home Cleaning')">Home Cleaning</a>
+      <a onclick="filterCat('Pest Control')">Pest Control</a>
+      <a onclick="filterCat('Bathroom Fixes')">Bathroom Fixes</a>
+      <a onclick="filterCat('Kitchen Fixes')">Kitchen Fixes</a>
+      <a onclick="filterCat('Home Repair')">Home Repair</a>
+      <a onclick="filterCat('Room Comfort')">Room Comfort</a>
     </div>
+    <div class="footer-col"><h4>Popular</h4>
+      <a onclick="openArticle('oil-stain')">Remove Oil Stains</a>
+      <a onclick="openArticle('cockroach')">Cockroach Control</a>
+      <a onclick="openArticle('dripping-faucet')">Fix Dripping Faucet</a>
+      <a onclick="openArticle('deep-clean')">Deep Clean Bathroom</a>
+      <a onclick="openArticle('gas-burner')">Gas Burner Fix</a>
+    </div>
+    <div class="footer-col"><h4>Site</h4>
+      <a href="#">About Us</a><a href="#">Contact</a>
+      <a href="#">Privacy Policy</a><a href="#">Disclaimer</a>
+      <a onclick="openAdmin()">Admin Panel</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 FixHomeFast. All rights reserved.</span>
+    <span>Built for homeowners who fix things themselves.</span>
   </div>
 </footer>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
+<!-- ADMIN PANEL -->
+<div id="admin-wrap">
+  <div class="admin-panel">
+    <div class="adm-top">
+      <div class="adm-brand">Fix<span>Home</span>Fast <span style="color:var(--dim);font-size:0.6rem">ADMIN</span></div>
+      <button class="adm-t active" id="adm-t-login" onclick="admTab('login')">Login</button>
+      <button class="adm-t" id="adm-t-dash" onclick="admTab('dash')" style="display:none">Dashboard</button>
+      <button class="adm-t" id="adm-t-articles" onclick="admTab('articles')" style="display:none">Articles</button>
+      <button class="adm-t" id="adm-t-new" onclick="admTab('new')" style="display:none">+ New Post</button>
+      <button class="adm-x" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="adm-body">
+      <!-- Login -->
+      <div class="adm-pane active" id="adm-pane-login">
+        <div class="login-box">
+          <div class="licon">🔐</div>
+          <h2>Admin Login</h2>
+          <p>Enter credentials to access the dashboard</p>
+          <input class="adm-field" type="text" id="au" placeholder="Username" onkeydown="if(event.key==='Enter')doLogin()"/>
+          <input class="adm-field" type="password" id="ap" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"/>
+          <button class="adm-login-btn" onclick="doLogin()">Access Dashboard</button>
+          <div class="adm-err" id="adm-err">Incorrect credentials</div>
+          <p style="font-size:0.72rem;color:var(--dim);margin-top:14px;font-family:'Syne',sans-serif;letter-spacing:0.5px">Default: admin / fixhome2025</p>
+        </div>
+      </div>
+      <!-- Dashboard -->
+      <div class="adm-pane" id="adm-pane-dash">
+        <div class="stats-g" id="admStatsG"></div>
+        <h3 style="font-family:'Syne',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Recent Articles</h3>
+        <div id="admRecent"></div>
+      </div>
+      <!-- Articles -->
+      <div class="adm-pane" id="adm-pane-articles">
+        <div class="adm-toolbar">
+          <h3>All Articles</h3>
+          <button class="adm-new" onclick="admTab('new')">+ Write New Article</button>
+        </div>
+        <div id="admArtList"></div>
+      </div>
+      <!-- New/Edit -->
+      <div class="adm-pane" id="adm-pane-new">
+        <h3 style="font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text);margin-bottom:22px" id="formH">Write New Article</h3>
+        <div class="form-row">
+          <div><label class="adm-label">Title *</label><input class="adm-field" id="f-t" placeholder="How to Remove Oil Stains..."/></div>
+          <div><label class="adm-label">Category *</label>
+            <select class="adm-sel" id="f-c">
+              <option value="">Select...</option>
+              <option>Stain Removal</option><option>Home Cleaning</option><option>Pest Control</option>
+              <option>Bathroom Fixes</option><option>Kitchen Fixes</option><option>Home Repair</option><option>Room Comfort</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div><label class="adm-label">Image URL</label><input class="adm-field" id="f-i" placeholder="https://images.unsplash.com/..."/></div>
+          <div><label class="adm-label">Read Time</label><input class="adm-field" id="f-tm" placeholder="5 min"/></div>
+        </div>
+        <div class="form-r1"><label class="adm-label">Excerpt *</label><input class="adm-field" id="f-e" placeholder="Brief description for cards..."/></div>
+        <div class="form-r1"><label class="adm-label">Article Body (HTML)</label>
+          <textarea class="adm-ta" id="f-b" style="min-height:200px" placeholder="<p>Article content here...</p>&#10;<h2>Section Title</h2>&#10;<p>More content...</p>"></textarea>
+        </div>
+        <div class="form-row">
+          <div><label class="adm-label">Meta Title (SEO)</label><input class="adm-field" id="f-mt" placeholder="SEO title..."/></div>
+          <div><label class="adm-label">Meta Description (SEO)</label><input class="adm-field" id="f-md" placeholder="SEO description..."/></div>
+        </div>
+        <input type="hidden" id="f-id"/>
+        <div class="form-actions">
+          <button class="adm-save" onclick="saveArt()">💾 Publish Article</button>
+          <button class="adm-cancel" onclick="resetForm()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-/* ═══════════════════════════════════════
-   CURSOR
-═══════════════════════════════════════ */
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-function lerpCursor(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerpCursor)}
-lerpCursor();
-document.querySelectorAll('a,button,.bento-card,.cat-pill,.rel-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
-});
+/* ═══════════════════════════════════════════════
+   THREE.JS — CINEMATIC 3D BACKGROUND
+═══════════════════════════════════════════════ */
+(function initThree() {
+  const canvas = document.getElementById('three-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-/* ═══════════════════════════════════════
-   WELCOME SCREEN
-═══════════════════════════════════════ */
-setTimeout(()=>{
-  document.getElementById('welcome').classList.add('done');
-},2900);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 6);
 
-/* ═══════════════════════════════════════
-   HERO PARTICLE CANVAS
-═══════════════════════════════════════ */
-(function(){
-  const canvas=document.getElementById('hero-canvas');
-  const ctx=canvas.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight}
-  resize();window.addEventListener('resize',resize);
-  for(let i=0;i<90;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.8+.4});
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(248,180,64,0.4)';ctx.fill();
-    });
-    pts.forEach((a,i)=>{
-      for(let j=i+1;j<pts.length;j++){
-        const b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=`rgba(232,93,4,${.15*(1-d/120)})`;ctx.lineWidth=.6;ctx.stroke()}
-      }
-    });
-    requestAnimationFrame(draw);
+  /* — Resize — */
+  function onResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
   }
-  draw();
+  window.addEventListener('resize', onResize);
+  onResize();
+
+  /* — Fog — */
+  scene.fog = new THREE.FogExp2(0x080808, 0.04);
+
+  /* — Lights — */
+  const ambient = new THREE.AmbientLight(0xffffff, 0.15);
+  scene.add(ambient);
+
+  const fireLight = new THREE.PointLight(0xe85d04, 3, 12);
+  fireLight.position.set(3, 2, 2);
+  scene.add(fireLight);
+
+  const rimLight = new THREE.DirectionalLight(0xffd060, 0.8);
+  rimLight.position.set(-4, 3, -2);
+  scene.add(rimLight);
+
+  const fillLight = new THREE.PointLight(0xf48c06, 1.5, 8);
+  fillLight.position.set(-2, -1, 3);
+  scene.add(fillLight);
+
+  /* — Floating 3D Objects (home-themed) — */
+  const group = new THREE.Group();
+  scene.add(group);
+
+  /* House silhouette */
+  function createHouse(scale = 1) {
+    const g = new THREE.Group();
+    // Body
+    const bodyGeo = new THREE.BoxGeometry(1.4 * scale, 1 * scale, 0.8 * scale);
+    const bodyMat = new THREE.MeshStandardMaterial({
+      color: 0x1a1a1a,
+      metalness: 0.8, roughness: 0.2,
+      emissive: 0xe85d04, emissiveIntensity: 0.03,
+    });
+    const body = new THREE.Mesh(bodyGeo, bodyMat);
+    body.castShadow = true;
+    g.add(body);
+    // Roof
+    const roofGeo = new THREE.ConeGeometry(1.1 * scale, 0.7 * scale, 4);
+    const roofMat = new THREE.MeshStandardMaterial({
+      color: 0xe85d04, metalness: 0.6, roughness: 0.3,
+    });
+    const roof = new THREE.Mesh(roofGeo, roofMat);
+    roof.position.y = 0.85 * scale;
+    roof.rotation.y = Math.PI / 4;
+    roof.castShadow = true;
+    g.add(roof);
+    // Door
+    const doorGeo = new THREE.BoxGeometry(0.22 * scale, 0.35 * scale, 0.05 * scale);
+    const doorMat = new THREE.MeshStandardMaterial({
+      color: 0xf48c06, metalness: 0.5, roughness: 0.5,
+      emissive: 0xf48c06, emissiveIntensity: 0.2,
+    });
+    const door = new THREE.Mesh(doorGeo, doorMat);
+    door.position.set(0, -0.32 * scale, 0.43 * scale);
+    g.add(door);
+    return g;
+  }
+
+  /* Tool wrench shape */
+  function createWrench(scale = 1) {
+    const g = new THREE.Group();
+    const shaftGeo = new THREE.CylinderGeometry(0.06 * scale, 0.06 * scale, 1.2 * scale, 12);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x888888, metalness: 0.95, roughness: 0.05,
+    });
+    const shaft = new THREE.Mesh(shaftGeo, mat);
+    shaft.rotation.z = Math.PI / 6;
+    g.add(shaft);
+    const headGeo = new THREE.TorusGeometry(0.18 * scale, 0.07 * scale, 8, 16, Math.PI);
+    const head = new THREE.Mesh(headGeo, mat);
+    head.position.set(0.3 * scale, 0.6 * scale, 0);
+    head.rotation.z = -0.2;
+    g.add(head);
+    return g;
+  }
+
+  /* Droplet / water drop */
+  function createDrop(scale = 1) {
+    const geo = new THREE.SphereGeometry(0.3 * scale, 16, 16);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x88aaff, metalness: 0.1, roughness: 0.1,
+      transparent: true, opacity: 0.7,
+      emissive: 0x4466aa, emissiveIntensity: 0.15,
+    });
+    return new THREE.Mesh(geo, mat);
+  }
+
+  /* Floating particle field */
+  const particleCount = 200;
+  const pPositions = new Float32Array(particleCount * 3);
+  const pSizes = new Float32Array(particleCount);
+  for (let i = 0; i < particleCount; i++) {
+    pPositions[i * 3] = (Math.random() - 0.5) * 20;
+    pPositions[i * 3 + 1] = (Math.random() - 0.5) * 20;
+    pPositions[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    pSizes[i] = Math.random() * 3 + 1;
+  }
+  const pGeo = new THREE.BufferGeometry();
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+  pGeo.setAttribute('size', new THREE.BufferAttribute(pSizes, 1));
+  const pMat = new THREE.PointsMaterial({
+    color: 0xf48c06, size: 0.04, transparent: true, opacity: 0.4,
+    sizeAttenuation: true,
+  });
+  const particles = new THREE.Points(pGeo, pMat);
+  scene.add(particles);
+
+  /* Grid floor */
+  const gridHelper = new THREE.GridHelper(30, 40, 0xe85d04, 0x1a1a1a);
+  gridHelper.position.y = -4;
+  gridHelper.material.opacity = 0.15;
+  gridHelper.material.transparent = true;
+  scene.add(gridHelper);
+
+  /* Compose objects in scene */
+  const house1 = createHouse(0.8);
+  house1.position.set(-3, -0.5, -2);
+  house1.rotation.y = 0.3;
+  group.add(house1);
+
+  const house2 = createHouse(0.5);
+  house2.position.set(3.5, -1, -3);
+  house2.rotation.y = -0.4;
+  group.add(house2);
+
+  const house3 = createHouse(0.35);
+  house3.position.set(0, 2.5, -4);
+  house3.rotation.y = 0.8;
+  group.add(house3);
+
+  const wrench = createWrench(0.9);
+  wrench.position.set(2.5, 1, -1);
+  wrench.rotation.z = 0.3;
+  group.add(wrench);
+
+  const drop = createDrop(0.7);
+  drop.position.set(-2.5, 1.5, -1);
+  group.add(drop);
+
+  /* Glowing orb */
+  const orbGeo = new THREE.SphereGeometry(0.8, 32, 32);
+  const orbMat = new THREE.MeshStandardMaterial({
+    color: 0xe85d04, metalness: 0.2, roughness: 0.8,
+    emissive: 0xe85d04, emissiveIntensity: 0.4,
+    transparent: true, opacity: 0.15,
+  });
+  const orb = new THREE.Mesh(orbGeo, orbMat);
+  orb.position.set(1, 0.5, 0);
+  scene.add(orb);
+
+  /* Rings */
+  for (let i = 0; i < 3; i++) {
+    const rGeo = new THREE.TorusGeometry(1.5 + i * 0.6, 0.01, 8, 64);
+    const rMat = new THREE.MeshStandardMaterial({
+      color: 0xe85d04, transparent: true, opacity: 0.06 - i * 0.015,
+    });
+    const ring = new THREE.Mesh(rGeo, rMat);
+    ring.rotation.x = Math.PI / 2 + i * 0.3;
+    ring.position.set(1, 0.5, 0);
+    scene.add(ring);
+  }
+
+  /* Mouse parallax */
+  let mouseX = 0, mouseY = 0;
+  let targetX = 0, targetY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = -(e.clientY / window.innerHeight - 0.5) * 2;
+  });
+
+  /* Scroll-driven camera */
+  let scrollProgress = 0;
+  window.addEventListener('scroll', () => {
+    const max = document.body.scrollHeight - window.innerHeight;
+    scrollProgress = max > 0 ? window.scrollY / max : 0;
+  });
+
+  /* Animate */
+  let clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    // Smooth mouse
+    targetX += (mouseX - targetX) * 0.04;
+    targetY += (mouseY - targetY) * 0.04;
+
+    // Camera parallax + scroll
+    camera.position.x = targetX * 0.6;
+    camera.position.y = 0.3 + targetY * 0.3 - scrollProgress * 3;
+    camera.position.z = 6 - scrollProgress * 2;
+    camera.lookAt(0, -scrollProgress * 0.5, 0);
+
+    // Object rotations
+    group.rotation.y = Math.sin(t * 0.12) * 0.08 + targetX * 0.05;
+    group.rotation.x = Math.sin(t * 0.08) * 0.03 + targetY * 0.02;
+
+    // Floating animations
+    house1.position.y = -0.5 + Math.sin(t * 0.7) * 0.08;
+    house2.position.y = -1 + Math.sin(t * 0.5 + 1) * 0.06;
+    house3.position.y = 2.5 + Math.sin(t * 0.6 + 2) * 0.07;
+    wrench.rotation.z = 0.3 + Math.sin(t * 0.9) * 0.15;
+    wrench.position.y = 1 + Math.cos(t * 0.7) * 0.1;
+    drop.position.y = 1.5 + Math.sin(t * 1.1) * 0.12;
+    drop.scale.setScalar(1 + Math.sin(t * 1.5) * 0.05);
+
+    // Orb pulse
+    orb.scale.setScalar(1 + Math.sin(t * 0.8) * 0.08);
+    orb.material.emissiveIntensity = 0.3 + Math.sin(t * 1.2) * 0.15;
+    fireLight.intensity = 2.5 + Math.sin(t * 2.3) * 0.5;
+    fireLight.position.x = 3 + Math.sin(t * 0.5) * 0.5;
+
+    // Particles slow drift
+    particles.rotation.y = t * 0.01;
+    particles.rotation.x = t * 0.005;
+
+    // Grid pan
+    gridHelper.position.z = (t * 0.3) % 1;
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // Expose camera for GSAP
+  window._threeCamera = camera;
+  window._threeScene = scene;
 })();
 
-/* ═══════════════════════════════════════
-   NAV SCROLL
-═══════════════════════════════════════ */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
-  document.getElementById('btt').classList.toggle('show',window.scrollY>500);
-  revealAll();
-});
+/* ═══════════════════════════════════════════════
+   GSAP SETUP
+═══════════════════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-/* ═══════════════════════════════════════
-   MOBILE MENU
-═══════════════════════════════════════ */
-function toggleMob(){
-  document.getElementById('mobMenu').classList.toggle('open');
-  document.getElementById('ham').classList.toggle('open');
-}
-
-/* ═══════════════════════════════════════
-   POSTS DATA
-═══════════════════════════════════════ */
-const POSTS=[
-  {id:'oil-stain',     cat:'Stain Removal', icon:'🧴', title:'How to Remove Oil Stains from Clothes Fast',               time:'5 min', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=340&fit=crop&auto=format', exc:'Oil stains don\'t have to be permanent. With dish soap and baking soda, you can lift grease from fabric in minutes.'},
-  {id:'cockroach',     cat:'Pest Control',  icon:'🐛', title:'Get Rid of Cockroaches Without Chemicals',                  time:'6 min', img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&h=340&fit=crop&auto=format', exc:'Safe, natural methods that actually work — no toxic sprays needed.'},
-  {id:'dripping-faucet',cat:'Bathroom Fixes',icon:'🚿',title:'Fix a Dripping Faucet: No Plumber Needed',                  time:'7 min', img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=340&fit=crop&auto=format', exc:'That constant drip wastes 3,000 gallons a year. Fix it yourself in under an hour for almost nothing.'},
-  {id:'deep-clean',    cat:'Home Cleaning', icon:'🧹', title:'Deep Clean Your Bathroom in 30 Minutes',                   time:'5 min', img:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&h=340&fit=crop&auto=format', exc:'A proven 30-minute routine that leaves your bathroom spotless every time.'},
-  {id:'gas-burner',    cat:'Kitchen Fixes', icon:'🍳', title:'Gas Burner Not Lighting? Easy Fixes',                      time:'5 min', img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=340&fit=crop&auto=format', exc:'Clicking but not catching? 90% of the time it\'s a simple clog you can fix in 10 minutes.'},
-  {id:'p6',            cat:'Home Repair',   icon:'🔨', title:'Fix a Squeaky Floorboard Without Lifting It',              time:'6 min', img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=340&fit=crop&auto=format', exc:'That squeak every morning doesn\'t require major work. Here\'s how to silence it fast.'},
-  {id:'p7',            cat:'Stain Removal', icon:'🍷', title:'Remove Red Wine Stains from Carpet Immediately',           time:'4 min', img:'https://images.unsplash.com/photo-1541795795328-f073b763494e?w=600&h=340&fit=crop&auto=format', exc:'Spilled red wine? Act in the next 5 minutes and you can save your carpet completely.'},
-  {id:'p8',            cat:'Room Comfort',  icon:'🛋️', title:'7 Ways to Keep Your Room Cool Without AC',                 time:'5 min', img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=340&fit=crop&auto=format', exc:'Beat the heat with clever airflow tricks, blackout curtains, and a few surprising hacks.'},
-  {id:'p9',            cat:'Pest Control',  icon:'🐜', title:'Natural Ways to Get Rid of Kitchen Ants',                  time:'5 min', img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=600&h=340&fit=crop&auto=format', exc:'Non-toxic, family-safe methods to stop ant trails at their source permanently.'},
-  {id:'p10',           cat:'Bathroom Fixes',icon:'🪠', title:'Unclog a Shower Drain With No Tools',                      time:'3 min', img:'https://images.unsplash.com/photo-1620626011761-996317702149?w=600&h=340&fit=crop&auto=format', exc:'Slow drain? Two household ingredients and five minutes is all you need.'},
-  {id:'p11',           cat:'Home Cleaning', icon:'🫧', title:'Remove Mold from Bathroom Grout for Good',                 time:'6 min', img:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&h=340&fit=crop&auto=format', exc:'Mold in grout lines isn\'t just ugly — here\'s how to remove it and prevent it from coming back.'},
-  {id:'p12',           cat:'Kitchen Fixes', icon:'🧊', title:'Refrigerator Not Cooling? Check These 5 Things',           time:'7 min', img:'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&h=340&fit=crop&auto=format', exc:'Before calling a repairman, run through this quick checklist. 80% of fridge issues are DIY fixes.'},
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+const DEFAULTS = [
+  {id:'oil-stain',cat:'Stain Removal',icon:'🧴',title:'How to Remove Oil Stains from Clothes Fast',time:'5 min',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&h=400&fit=crop&auto=format',exc:'Oil stains don\'t have to be permanent. With dish soap and baking soda, you can lift grease in minutes.',date:'May 2025',body:`<p><strong>Oil stains are one of the most frustrating laundry problems</strong> — one splash while cooking and your favorite shirt looks ruined. The good news: most come out completely if you act fast.</p><h2>What You'll Need</h2><ul><li>Dish soap (grease-cutting formula)</li><li>Baking soda or cornstarch</li><li>Old toothbrush</li><li>Paper towels</li><li>Cold water</li></ul><h2>Step 1: Blot — Don't Rub</h2><p>Grab a paper towel and blot. <strong>Never rub</strong> — it pushes oil deeper into fibers.</p><div class="tip-box"><strong>💡 Tip</strong><p>Work from outer edges inward to prevent spreading.</p></div><h2>Step 2: Baking Soda</h2><p>Sprinkle baking soda over the stain. Let sit 15–30 minutes. Brush off. It should clump slightly, pulling oil from the fabric.</p><h2>Step 3: Dish Soap</h2><p>Apply a drop. Work in with a toothbrush. Let sit 5–10 minutes.</p><h2>Step 4: Wash Hot</h2><p>Wash in the warmest water the fabric allows.</p><div class="warn-box"><strong>⚠️ Warning</strong><p>Do NOT put in the dryer until confirmed stain is gone. Heat permanently sets oil stains.</p></div><h2>Summary</h2><ol><li>Blot immediately</li><li>Baking soda 30 min</li><li>Dish soap + toothbrush</li><li>Wash hot</li><li>Air dry and check</li></ol>`},
+  {id:'cockroach',cat:'Pest Control',icon:'🐛',title:'Get Rid of Cockroaches in the Kitchen Without Chemicals',time:'6 min',img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=700&h=400&fit=crop&auto=format',exc:'Safe, natural methods that actually eliminate cockroaches — no toxic sprays needed.',date:'May 2025',body:`<p>Cockroaches are persistent — but you don't need toxic chemicals to eliminate them.</p><h2>Step 1: Remove Food Supply</h2><ul><li>Store all food in sealed containers</li><li>Clean crumbs immediately</li><li>Empty trash every night</li></ul><h2>Step 2: Eliminate Moisture</h2><p>Fix leaky pipes. Dry the sink before bed.</p><div class="tip-box"><strong>💡 Tip</strong><p>Place a dry cloth over the drain at night — removes moisture signal.</p></div><h2>Step 3: Boric Acid</h2><p>Apply thin lines behind appliances and under the sink. Cockroaches walk through it and it kills them over 24–72 hours.</p><div class="warn-box"><strong>⚠️ Warning</strong><p>Keep boric acid away from food, children, and pets.</p></div><h2>Step 4: Baking Soda + Sugar Trap</h2><p>Mix equal parts in shallow containers. Sugar attracts, baking soda kills. Non-toxic to humans.</p><h2>Step 5: Seal Entry Points</h2><p>Use caulk around pipes and baseboards. Cockroaches fit through credit-card-width gaps.</p>`},
+  {id:'dripping-faucet',cat:'Bathroom Fixes',icon:'🚿',title:'Fix a Dripping Faucet: No Plumber Needed',time:'7 min',img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=700&h=400&fit=crop&auto=format',exc:'A dripping faucet wastes 3,000 gallons/year. Fix it yourself in under an hour for almost nothing.',date:'April 2025',body:`<p>That constant drip wastes over <strong>3,000 gallons per year</strong>. The fix usually takes under an hour and costs a few dollars.</p><h2>Why Faucets Drip</h2><p>Worn-out washer or O-ring — every turn compresses it until it stops sealing.</p><h2>Tools</h2><ul><li>Adjustable wrench</li><li>Screwdrivers</li><li>Replacement washers or cartridge</li><li>Plumber's grease</li></ul><h2>Step 1: Turn Off Water Supply</h2><p>Under-sink shut-off valves — turn clockwise to close.</p><div class="warn-box"><strong>⚠️ Never skip this.</strong><p>Removing the handle without turning off water creates a flood.</p></div><h2>Step 2: Replace Washer or Cartridge</h2><p>Pry off cap, remove screw, pull handle. Replace the rubber washer or pull and replace the cartridge. Apply plumber's grease, reassemble.</p><div class="tip-box"><strong>💡 Tip</strong><p>Old faucet? Replace the whole unit ($30–60) — often easier than hunting parts.</p></div>`},
+  {id:'deep-clean',cat:'Home Cleaning',icon:'🧹',title:'How to Deep Clean Your Bathroom in 30 Minutes',time:'5 min',img:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=700&h=400&fit=crop&auto=format',exc:'A proven 30-minute routine that leaves every surface spotless every single time.',date:'May 2025',body:`<p>With the right plan, 30 minutes is all you need for a thorough deep clean.</p><div class="tip-box"><strong>💡 The Secret</strong><p>Pre-spray everything immediately. Dwell time does the scrubbing while you work elsewhere.</p></div><h2>The Routine</h2><table><tr><th>Time</th><th>Task</th></tr><tr><td>0–3 min</td><td>Pre-spray all surfaces</td></tr><tr><td>3–8 min</td><td>Shower & tub</td></tr><tr><td>8–14 min</td><td>Toilet inside & out</td></tr><tr><td>14–20 min</td><td>Sink & faucet</td></tr><tr><td>20–24 min</td><td>Mirror & shelves</td></tr><tr><td>24–30 min</td><td>Floor & finish</td></tr></table><div class="warn-box"><strong>⚠️ Never mix bleach and vinegar</strong><p>Produces toxic chlorine gas.</p></div>`},
+  {id:'gas-burner',cat:'Kitchen Fixes',icon:'🍳',title:'Gas Burner Not Lighting? Easy Fixes',time:'5 min',img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&h=400&fit=crop&auto=format',exc:'Clicking but not catching? 90% of cases are a simple clog — cleared in 10 minutes.',date:'May 2025',body:`<p>Clicking but nothing lights? In most cases a simple clog fix takes 10 minutes.</p><h2>Most Common Causes</h2><ul><li>Clogged burner ports (70% of cases)</li><li>Wet/dirty igniter</li><li>Misaligned burner cap</li><li>Gas supply issue</li></ul><h2>Fix 1: Clean Burner Ports</h2><ol><li>Turn stove off and cool</li><li>Remove grate and burner cap</li><li>Clear each port with toothpick</li><li>Scrub with old toothbrush</li><li>Dry completely before reassembling</li></ol><div class="warn-box"><strong>⚠️ Gas Smell</strong><p>Stop clicking. Open windows, leave, call gas company.</p></div><h2>Quick Reference</h2><table><tr><th>Problem</th><th>Fix</th></tr><tr><td>Clogged ports</td><td>Toothpick + brush</td></tr><tr><td>Wet igniter</td><td>Hair dryer + 30 min</td></tr><tr><td>Misaligned cap</td><td>Reseat flat</td></tr><tr><td>Dirty igniter</td><td>Rubbing alcohol swab</td></tr></table>`},
+  {id:'squeaky-floor',cat:'Home Repair',icon:'🔨',title:'Fix a Squeaky Floorboard Without Lifting It',time:'6 min',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&h=400&fit=crop&auto=format',exc:'Silence that morning squeak without any major floor work — takes under 15 minutes.',date:'April 2025',body:`<p>That annoying squeak doesn't require tearing up your floor.</p><h2>Fix 1: Talcum Powder (Fastest)</h2><p>Sprinkle talcum powder or powdered graphite over the squeaky joint. Work into the crack. Walk over repeatedly to push the powder deep. Lubricates friction instantly.</p><div class="tip-box"><strong>💡 Tip</strong><p>Baby powder works as well as talcum powder and is cheaper.</p></div><h2>Fix 2: Screw from Below</h2><p>If you have access from below (basement), have someone stand on the squeaky spot. Drive a short wood screw up through the subfloor into the floorboard — stopping before it breaks through the surface.</p><div class="warn-box"><strong>⚠️ Warning</strong><p>Measure carefully. A screw too long will pop through your floor surface.</p></div>`},
+  {id:'red-wine',cat:'Stain Removal',icon:'🍷',title:'Remove Red Wine Stains from Carpet Immediately',time:'4 min',img:'https://images.unsplash.com/photo-1541795795328-f073b763494e?w=700&h=400&fit=crop&auto=format',exc:'Spilled red wine? Act in the next 5 minutes and you can save your carpet completely.',date:'April 2025',body:`<p>Red wine on carpet looks catastrophic — but act within a few minutes and it comes out completely.</p><h2>Act Immediately</h2><p>Blot with a clean white cloth. Never rub. Work from outside edges inward.</p><div class="tip-box"><strong>💡 Critical</strong><p>Never rub red wine. Rubbing spreads it and pushes it deeper into fibers.</p></div><h2>Salt Trick (First 2 Minutes)</h2><p>Pour a generous amount of table salt on the wet stain. Leave 1–2 minutes, vacuum away.</p><h2>Club Soda</h2><p>Pour cold club soda directly on the stain. The carbonation lifts the wine. Blot. Repeat 2–3 times.</p><h2>Dish Soap + Hydrogen Peroxide</h2><p>Mix 1 tbsp dish soap + 1 tbsp hydrogen peroxide. Test on hidden area first. Apply, let sit 5 min, blot.</p><div class="warn-box"><strong>⚠️ Test First</strong><p>Hydrogen peroxide can bleach darker carpets.</p></div>`},
+  {id:'cool-room',cat:'Room Comfort',icon:'🛋️',title:'7 Ways to Keep Your Room Cool Without AC',time:'5 min',img:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&h=400&fit=crop&auto=format',exc:'Beat the heat with clever airflow tricks, blackout curtains, and surprising hacks.',date:'May 2025',body:`<p>With the right techniques, you can drop room temperature by 5–10°F without AC.</p><h2>1. Blackout Curtains</h2><p>Sunlight through windows accounts for up to 30% of unwanted heat. Close blackout curtains during peak hours (10am–4pm).</p><h2>2. Cross-Ventilation</h2><p>Open windows on opposite sides to create a cross breeze.</p><h2>3. Fan + Ice Trick</h2><p>Place a bowl of ice in front of a fan. The air blows over the ice and chills significantly.</p><div class="tip-box"><strong>💡 Pro Tip</strong><p>Point your fan outward in a window at night — pulls hot air out more effectively than blowing in.</p></div><h2>4. Night Purge</h2><p>Open all windows after sunset to flush out the day's built-up heat. Close again at sunrise.</p><h2>5. Wet Sheet in Front of Fan</h2><p>Evaporation cools the air significantly — same principle as how sweat cools your body.</p>`},
+  {id:'ants-kitchen',cat:'Pest Control',icon:'🐜',title:'Natural Ways to Get Rid of Kitchen Ants',time:'5 min',img:'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=700&h=400&fit=crop&auto=format',exc:'Non-toxic, family-safe methods to stop ant trails permanently at their source.',date:'April 2025',body:`<p>Kitchen ants are manageable without pesticides. Natural methods work just as well and are safer around food.</p><h2>White Vinegar Wipe-Down</h2><p>Mix equal parts white vinegar and water. Wipe all counters and along the ant trail. Disrupts pheromone trail. Repeat daily for 3–4 days.</p><div class="tip-box"><strong>💡 Double Duty</strong><p>White vinegar also disinfects surfaces while deterring ants.</p></div><h2>Diatomaceous Earth</h2><p>Sprinkle food-grade diatomaceous earth along entry points and under appliances. Safe for humans and pets. Damages ants' exoskeletons and dehydrates them.</p><h2>Cinnamon Barrier</h2><p>Ground cinnamon across entry points. Ants won't cross it.</p><h2>Seal Entry Points</h2><p>After clearing the ants, caulk the entry crack or gap permanently.</p>`},
+  {id:'unclog-drain',cat:'Bathroom Fixes',icon:'🪠',title:'Unclog a Shower Drain With No Tools',time:'3 min',img:'https://images.unsplash.com/photo-1620626011761-996317702149?w=700&h=400&fit=crop&auto=format',exc:'Slow drain? Two household ingredients and five minutes is all you need.',date:'May 2025',body:`<p>A slow shower drain is almost always a hair clog — clear it in minutes with no tools.</p><h2>Step 1: Remove the Drain Cover</h2><p>Most lift up or unscrew by hand.</p><h2>Step 2: Pull Out the Clog</h2><p>Use fingers (with gloves) or a bent wire coat hanger with a small hook to fish out the clog.</p><div class="tip-box"><strong>💡 Tip</strong><p>A bent coat hanger is one of the most effective drain tools ever invented.</p></div><h2>Step 3: Baking Soda + Vinegar</h2><p>Pour half cup baking soda into drain, then half cup white vinegar. Cover drain immediately and let fizz 5 minutes. Flush with hot tap water.</p><div class="warn-box"><strong>⚠️ Not Boiling Water</strong><p>Boiling water can warp PVC pipes. Use hot tap water instead.</p></div><h2>Prevention</h2><p>A $3–5 mesh drain cover catches hair before it enters the pipe. Empty it after each shower.</p>`},
+  {id:'mold-grout',cat:'Home Cleaning',icon:'🫧',title:'Remove Mold from Bathroom Grout for Good',time:'6 min',img:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=700&h=400&fit=crop&auto=format',exc:'Mold in grout isn\'t just ugly — eliminate it permanently with this simple method.',date:'May 2025',body:`<p>Black mold in bathroom grout can cause respiratory problems with prolonged exposure. You don't need expensive products.</p><h2>Method 1: Bleach Gel (Most Effective)</h2><p>Apply thick bleach gel directly onto moldy grout lines. Leave 10–15 minutes. Scrub with stiff grout brush. Rinse thoroughly.</p><div class="warn-box"><strong>⚠️ Ventilate</strong><p>Open windows and run exhaust fan. Never use bleach in an unventilated space.</p></div><h2>Method 2: Baking Soda + Hydrogen Peroxide</h2><p>Mix to a thick paste. Apply to grout lines. Leave 5–10 minutes, scrub, rinse. Safe for colored grout.</p><h2>Prevent Mold Coming Back</h2><ul><li>Run exhaust fan 15 min after every shower</li><li>Squeegee walls after each use</li><li>Apply grout sealer once per year</li></ul>`},
+  {id:'fridge-fix',cat:'Kitchen Fixes',icon:'🧊',title:'Refrigerator Not Cooling? Check These 5 Things',time:'7 min',img:'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=700&h=400&fit=crop&auto=format',exc:'80% of fridge cooling issues are DIY fixes. Run through this checklist before calling a repairman.',date:'April 2025',body:`<p>Before calling a $150/hour repairman, check these five things first.</p><h2>1. Temperature Settings</h2><p>Dials get bumped accidentally. Fridge: 35–38°F. Freezer: 0°F. Simply correct and wait 4–6 hours.</p><h2>2. Clean Condenser Coils</h2><p>Dirty coils are the #1 cause. Unplug fridge, locate coils on the back or bottom, vacuum with brush attachment. This often restores full cooling immediately.</p><div class="tip-box"><strong>💡 Maintenance</strong><p>Clean coils every 6–12 months. Extends fridge life significantly.</p></div><h2>3. Door Seals</h2><p>Test: close door on a piece of paper. If it pulls out easily, the seal is failing. Clean gasket with warm soapy water first. If still loose, replace ($15–40 online).</p><h2>4. Fan Running?</h2><p>Open freezer and listen. If evaporator fan is not running, defrost system may have failed — requires a technician.</p><h2>5. Clearance</h2><p>Fridges need 2–3 inches behind and above. No clearance = compressor overheats.</p>`},
+  {id:'blood-stain',cat:'Stain Removal',icon:'🩸',title:'Remove Blood Stains from Sheets and Fabric',time:'4 min',img:'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=700&h=400&fit=crop&auto=format',exc:'Cold water is everything with blood stains. Here\'s the exact technique to remove them completely.',date:'March 2025',body:`<p>The golden rule: <strong>always use cold water on blood</strong>. Hot water permanently sets blood stains by cooking the protein into the fabric.</p><h2>Fresh Blood Stains</h2><p>Run immediately under cold running water from the back of the fabric. Keep running until water runs clear.</p><div class="warn-box"><strong>⚠️ Critical</strong><p>Never use warm or hot water on blood. Cold only.</p></div><h2>Method 1: Salt + Cold Water</h2><p>Make a paste of table salt and cold water. Apply and work gently. Salt draws blood out. Rinse cold.</p><h2>Method 2: Hydrogen Peroxide (White Fabrics)</h2><p>Pour 3% hydrogen peroxide directly. It will fizz — that's it working. Let sit 5 minutes. Rinse cold.</p><div class="tip-box"><strong>💡 Mattresses</strong><p>Meat tenderizer + cold water paste. Enzymes break down blood proteins. Apply 30 min, wipe cold.</p></div>`},
+  {id:'mice-diy',cat:'Pest Control',icon:'🐀',title:'Get Rid of Mice Without a Pest Control Company',time:'8 min',img:'https://images.unsplash.com/photo-1425082661705-1834bfd09dca?w=700&h=400&fit=crop&auto=format',exc:'An exterminator costs $200–500. Here\'s how to do the same job for $20 yourself.',date:'March 2025',body:`<p>With the right approach, you can eliminate mice yourself for under $20.</p><h2>Step 1: Find Entry Points</h2><p>Mice enter through holes the size of a dime. Inspect where pipes enter walls, foundation cracks, under doors, around window frames. Look for dark grease marks along walls near holes.</p><h2>Step 2: Seal Every Entry Point</h2><p>Steel wool stuffed into holes and secured with caulk — mice can't chew through it. For under-door gaps, install door sweeps.</p><div class="tip-box"><strong>💡 Most Important Step</strong><p>Traps won't work if mice keep entering. Sealing entry points is the permanent fix.</p></div><h2>Step 3: Snap Traps</h2><p>Most effective trap available. Place along walls and behind appliances — mice stay close to walls. Best bait: peanut butter. Check and reset daily.</p><div class="warn-box"><strong>⚠️ Safety</strong><p>Keep snap traps away from children and pets.</p></div><h2>Step 4: Remove Attractants</h2><ul><li>Store all food in hard containers</li><li>Empty pet food bowls at night</li><li>Clear clutter — mice nest in undisturbed piles</li></ul>`},
+  {id:'oven-clean',cat:'Home Cleaning',icon:'🍋',title:'Clean a Very Dirty Oven Without Harsh Chemicals',time:'6 min',img:'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=700&h=400&fit=crop&auto=format',exc:'The most effective oven cleaning method uses only baking soda and vinegar. No toxic fumes.',date:'March 2025',body:`<p>The best deep-clean method for a seriously dirty oven requires almost no scrubbing.</p><h2>The Overnight Baking Soda Method</h2><h3>Step 1: Make the Paste</h3><p>Mix 1/2 cup baking soda with 2–3 tablespoons water to form a spreadable paste.</p><h3>Step 2: Apply Everywhere</h3><p>Spread over every interior surface — bottom, sides, back, door glass. Avoid heating elements.</p><div class="tip-box"><strong>💡 Tip</strong><p>Use rubber gloves. The paste is safe, but messy.</p></div><h3>Step 3: Leave Overnight</h3><p>Leave at least 12 hours. The baking soda slowly breaks down the grease chemistry.</p><h3>Step 4: Wipe Out</h3><p>Wipe with a damp cloth. The grease comes with it. Plastic scraper for stubborn spots.</p><h3>Step 5: Vinegar Spray</h3><p>Spray white vinegar over remaining baking soda residue — it fizzes and removes the last traces.</p><div class="warn-box"><strong>⚠️ Never use steel wool</strong><p>It scratches oven surfaces and creates rust.</p></div>`},
+  {id:'coffee-stain',cat:'Stain Removal',icon:'☕',title:'Remove Coffee Stains from a White Shirt',time:'4 min',img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&h=400&fit=crop&auto=format',exc:'Spilled coffee on a white shirt? Act fast with cold water and dish soap — it\'s gone.',date:'March 2025',body:`<p>Coffee stains on white shirts come out almost every time if you act quickly.</p><h2>Fresh Stains (Act Within 5 Minutes)</h2><ol><li>Blot immediately — never rub</li><li>Run cold water through the back of the stain</li><li>Apply a drop of dish soap, work in gently</li><li>Rinse cold</li><li>Repeat if needed before washing</li></ol><div class="tip-box"><strong>💡 Tip</strong><p>Cold water from the back pushes the stain out of the fabric rather than deeper in.</p></div><h2>Dish Soap + White Vinegar</h2><p>1 tbsp dish soap + 1 tbsp white vinegar + 2 cups cold water. Apply, blot, let sit 5 min, rinse cold. Gets that last faint brown tinge out.</p><h2>Hydrogen Peroxide (White Shirts Only)</h2><p>3% hydrogen peroxide applied directly for 5–10 minutes removes coffee exceptionally well.</p><div class="warn-box"><strong>⚠️ Warning</strong><p>Hydrogen peroxide can lighten colored fabrics. White shirts only.</p></div>`},
 ];
 
-/* ═══════════════════════════════════════
+const CATS_CONFIG = [
+  {name:'Stain Removal',icon:'🧴'},
+  {name:'Home Cleaning',icon:'🧹'},
+  {name:'Pest Control',icon:'🐛'},
+  {name:'Bathroom Fixes',icon:'🚿'},
+  {name:'Kitchen Fixes',icon:'🍳'},
+  {name:'Home Repair',icon:'🔨'},
+  {name:'Room Comfort',icon:'🛋️'},
+];
+
+function loadPosts(){const s=localStorage.getItem('fhf_v4_posts');return s?JSON.parse(s):[...DEFAULTS]}
+function savePosts(p){localStorage.setItem('fhf_v4_posts',JSON.stringify(p))}
+let POSTS = loadPosts();
+
+/* ═══════════════════════════════════════════════
+   LOADER SEQUENCE
+═══════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  const bar = document.getElementById('loaderBar');
+  const pct = document.getElementById('loaderPct');
+  const logo = document.getElementById('loaderLogo');
+
+  // Logo fade in
+  gsap.to(logo, { opacity: 1, duration: 0.6, delay: 0.2 });
+
+  // Bar progress
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 18 + 6;
+    if (progress >= 100) { progress = 100; clearInterval(interval); }
+    bar.style.width = progress + '%';
+    pct.textContent = Math.round(progress) + '%';
+    if (progress >= 100) {
+      setTimeout(() => {
+        gsap.to('#loader', {
+          opacity: 0, duration: 0.7, ease: 'power2.inOut',
+          onComplete: () => {
+            document.getElementById('loader').style.display = 'none';
+            startIntro();
+          }
+        });
+      }, 400);
+    }
+  }, 80);
+});
+
+function startIntro() {
+  // Nav
+  gsap.to('#nav', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', delay: 0.1 });
+  document.getElementById('nav').classList.add('ready');
+
+  // Hero sequence
+  gsap.to('#heroEye', { opacity: 1, y: 0, duration: 0.7, delay: 0.3, ease: 'power3.out' });
+  gsap.to('#heroSub',  { opacity: 1, y: 0, duration: 0.7, delay: 0.6, ease: 'power3.out' });
+  gsap.to('#heroActions', { opacity: 1, y: 0, duration: 0.7, delay: 0.8, ease: 'power3.out' });
+  gsap.to('#scrollInd', { opacity: 1, duration: 0.7, delay: 1.2 });
+
+  // Init ScrollTrigger reveals
+  setupScrollAnimations();
+  renderCats();
+  renderPosts();
+  renderFilterStrip();
+}
+
+function setupScrollAnimations() {
+  // Section labels + titles
+  ['#catLabel','#catTitle','#postsLabel','#postsTitle','#aboutLabel'].forEach(sel => {
+    gsap.from(sel, {
+      scrollTrigger: { trigger: sel, start: 'top 88%' },
+      opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
+    });
+  });
+
+  // Stats ticker
+  gsap.from('#statsTicker', {
+    scrollTrigger: { trigger: '#statsTicker', start: 'top 95%' },
+    opacity: 0, y: 20, duration: 0.6
+  });
+
+  // About stats
+  document.querySelectorAll('.about-stat').forEach((el, i) => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      opacity: 0, y: 24, duration: 0.6, delay: i * 0.1, ease: 'power3.out'
+    });
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER CATEGORIES
+═══════════════════════════════════════════════ */
+function renderCats() {
+  const g = document.getElementById('catsGrid');
+  g.innerHTML = CATS_CONFIG.map(c => `
+    <a class="cat-item" onclick="filterCat('${c.name}')">
+      <div class="cat-glyph">${c.icon}</div>
+      <div class="cat-name">${c.name}</div>
+      <div class="cat-count">${POSTS.filter(p => p.cat === c.name).length}</div>
+    </a>`).join('');
+
+  // GSAP stagger reveal
+  gsap.from('.cat-item', {
+    scrollTrigger: { trigger: '#catsGrid', start: 'top 85%' },
+    opacity: 0, y: 20, stagger: 0.06, duration: 0.5, ease: 'power3.out'
+  });
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER FILTER STRIP
+═══════════════════════════════════════════════ */
+function renderFilterStrip() {
+  const strip = document.getElementById('filterStrip');
+  strip.innerHTML = CATS_CONFIG.map(c =>
+    `<button class="filter-btn" onclick="filterCat('${c.name}')">${c.icon} ${c.name}</button>`
+  ).join('');
+}
+
+/* ═══════════════════════════════════════════════
    RENDER POSTS
-═══════════════════════════════════════ */
-let visibleExtra=0, currentFilter=null;
+═══════════════════════════════════════════════ */
+let currentFilter = null, currentPage = 1;
+const PER = 9;
 
-function getFiltered(){return currentFilter?POSTS.filter(p=>p.cat===currentFilter):POSTS}
-
-function renderBento(){
-  const filtered=getFiltered();
-  const bento=filtered.slice(0,5);
-  const extra=filtered.slice(5);
-
-  const g=document.getElementById('bentoGrid');
-  const sizes=['b1','b2','b3','b4','b5'];
-  g.innerHTML=bento.map((p,i)=>`
-    <a class="bento-card ${sizes[i]||'b3'}" onclick="openArticle('${p.id}')">
-      <img class="bc-img" src="${p.img}" alt="${p.title}" loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-      <div class="bc-img ph" style="display:none;height:${i<2?'340px':'200px'}">${p.icon}</div>
-      <div class="bc-body">
-        <span class="bc-tag">${p.cat}</span>
-        <div class="bc-title">${p.title}</div>
-        ${i<2?`<p class="bc-exc">${p.exc}</p>`:''}
-        <div class="bc-meta"><span>⏱ ${p.time}</span></div>
-        <div class="bc-read-more">Read Article →</div>
-      </div>
-    </a>
-  `).join('');
-
-  const eg=document.getElementById('extraGrid');
-  const shown=extra.slice(0,visibleExtra);
-  eg.innerHTML=shown.map(p=>`
-    <a class="bento-card" onclick="openArticle('${p.id}')">
-      <img class="bc-img" src="${p.img}" alt="${p.title}" loading="lazy" style="height:200px"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-      <div class="bc-img ph" style="display:none;height:200px">${p.icon}</div>
-      <div class="bc-body">
-        <span class="bc-tag">${p.cat}</span>
-        <div class="bc-title" style="font-size:1rem">${p.title}</div>
-        <div class="bc-meta" style="margin-top:8px"><span>⏱ ${p.time}</span></div>
-        <div class="bc-read-more">Read →</div>
-      </div>
-    </a>
-  `).join('');
-
-  if(shown.length>0) eg.classList.add('visible');
-  document.getElementById('loadMoreBtn').style.display=visibleExtra>=extra.length?'none':'inline-flex';
-  revealAll();
+function getFiltered() {
+  return currentFilter ? POSTS.filter(p => p.cat === currentFilter) : [...POSTS];
 }
 
-function loadMore(){visibleExtra+=6;renderBento()}
+function renderPosts() {
+  const filtered = getFiltered();
+  const total = filtered.length;
+  const bento = document.getElementById('bentoGrid');
+  const extra = document.getElementById('extraGrid');
+  const pgEl = document.getElementById('pagination');
 
-function filterCat(cat){
-  currentFilter=cat;visibleExtra=0;
-  document.getElementById('postsEyebrow').textContent=cat;
-  document.getElementById('postsTitle').textContent=cat.toUpperCase().replace(' ','\n');
-  document.getElementById('clearBtn').style.display='inline-block';
-  renderBento();showHome();
-  setTimeout(()=>document.getElementById('posts').scrollIntoView({behavior:'smooth'}),100);
+  document.getElementById('artCountTick').textContent = POSTS.length + '+';
+  document.getElementById('artCountTick2').textContent = POSTS.length + '+';
+  const statEl = document.getElementById('statArt');
+  if (statEl) statEl.textContent = POSTS.length;
+
+  // Filter buttons active state
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.includes(currentFilter || '__none__'));
+  });
+
+  if (currentPage === 1 && !currentFilter) {
+    // Bento layout for top 5
+    bento.style.display = 'grid';
+    const top5 = filtered.slice(0, 5);
+    const sizes = ['gc-7', 'gc-5', 'gc-4', 'gc-4', 'gc-4'];
+    bento.innerHTML = top5.map((p, i) => cardHTML(p, sizes[i])).join('');
+
+    const rest = filtered.slice(5, 5 + PER);
+    extra.innerHTML = rest.map(p => cardHTML(p, '')).join('');
+    extra.className = 'extra-posts' + (rest.length ? ' show' : '');
+  } else {
+    bento.style.display = 'none';
+    const start = (currentPage - 1) * PER;
+    const slice = filtered.slice(start, start + PER);
+    extra.innerHTML = slice.map(p => cardHTML(p, '')).join('');
+    extra.className = 'extra-posts show';
+  }
+
+  // Pagination
+  const adjTotal = currentFilter
+    ? Math.ceil(total / PER)
+    : Math.ceil(Math.max(0, total - 5) / PER) + 1;
+
+  if (adjTotal <= 1) { pgEl.innerHTML = ''; }
+  else {
+    let html = `<button class="pg-btn pg-prev" onclick="goPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled style="opacity:.3"' : ''}>← Prev</button>`;
+    for (let i = 1; i <= adjTotal; i++) {
+      if (i === 1 || i === adjTotal || Math.abs(i - currentPage) <= 1) {
+        html += `<button class="pg-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+      } else if (Math.abs(i - currentPage) === 2) {
+        html += `<span style="color:var(--dim);padding:0 4px;line-height:38px">…</span>`;
+      }
+    }
+    html += `<button class="pg-btn pg-next" onclick="goPage(${currentPage + 1})" ${currentPage >= adjTotal ? 'disabled style="opacity:.3"' : ''}>Next →</button>`;
+    pgEl.innerHTML = html;
+  }
+
+  // Animate new cards
+  setTimeout(() => {
+    gsap.from('.post-card', {
+      opacity: 0, y: 24, stagger: 0.07, duration: 0.55, ease: 'power3.out'
+    });
+  }, 50);
 }
 
-function clearFilter(){
-  currentFilter=null;visibleExtra=0;
-  document.getElementById('postsEyebrow').textContent='Latest Articles';
-  document.getElementById('postsTitle').textContent='FRESH FROM\nTHE TOOLBOX';
-  document.getElementById('clearBtn').style.display='none';
-  renderBento();
+function cardHTML(p, span) {
+  const cls = span ? span : '';
+  const imgH = span === 'gc-7' || span === 'gc-5' ? '320px' : '190px';
+  const titleSize = span === 'gc-7' ? '1.6rem' : span === 'gc-5' ? '1.25rem' : '1rem';
+  return `<a class="post-card ${cls}" onclick="openArticle('${p.id}')">
+    <div class="card-overlay"></div>
+    <img class="card-img" src="${p.img || ''}" alt="${p.title}" loading="lazy" style="height:${imgH}"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <div class="card-img ph" style="display:none;height:${imgH};font-size:3rem">${p.icon}</div>
+    <div class="card-body">
+      <div class="card-cat">${p.cat}</div>
+      <div class="card-title" style="font-size:${titleSize}">${p.title}</div>
+      ${span === 'gc-7' || span === 'gc-5' ? `<p class="card-exc">${p.exc}</p>` : ''}
+      <div class="card-meta"><span>⏱ ${p.time}</span><span>📅 ${p.date || '2025'}</span></div>
+      <div class="card-arrow">Read Article <span>→</span></div>
+    </div></a>`;
 }
 
-/* ═══════════════════════════════════════
-   ARTICLES DATA
-═══════════════════════════════════════ */
-const ARTICLES={
-'oil-stain':{
-  meta:{title:'How to Remove Oil Stains from Clothes Fast',cat:'Stain Removal',date:'May 2025',time:'5 min',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=500&fit=crop&auto=format'},
-  body:`
-    <p><strong>Oil stains are one of the most frustrating laundry problems</strong> — one splash while cooking and your favorite shirt looks ruined. Here's the good news: most oil stains come out completely if you act fast and use the right method.</p>
-    <h2>What You'll Need</h2>
-    <ul><li>Dish soap (Dawn or any grease-cutting formula)</li><li>Baking soda or cornstarch</li><li>An old toothbrush</li><li>Paper towels</li><li>Cold water</li></ul>
-    <h2>Step 1: Blot — Don't Rub</h2>
-    <p>The moment you notice the stain, grab a paper towel and gently blot the area. Press down to absorb as much oil as possible. <strong>Never rub</strong> — rubbing pushes the oil deeper into the fabric fibers.</p>
-    <div class="art-img ph" style="height:240px">🛢️</div>
-    <div class="tip-box"><strong>💡 Quick Tip</strong><p>Work from the outer edges of the stain inward to prevent it from spreading further.</p></div>
-    <h2>Step 2: Apply an Absorbent Powder</h2>
-    <p>Sprinkle a generous layer of baking soda or cornstarch directly over the stain. These powders draw oil out of fabric. Let it sit for at least 15–30 minutes, then brush off. You should notice it clumped slightly — good sign.</p>
-    <h2>Step 3: Apply Dish Soap</h2>
-    <p>Put a small drop of dish soap directly on the stain and work it in gently with your fingers or an old toothbrush. Dish soap cuts through grease just as well on fabric as on pots and pans. Let it sit for another 5–10 minutes before washing.</p>
-    <h2>Step 4: Wash in the Hottest Safe Temperature</h2>
-    <p>Check the clothing label. Wash in the warmest water the fabric can handle. Use your regular detergent as normal.</p>
-    <div class="warn-box"><strong>⚠️ Warning</strong><p>Do NOT put the garment in the dryer until you've confirmed the stain is gone. Heat from the dryer permanently sets the stain.</p></div>
-    <h2>What About Dried Oil Stains?</h2>
-    <p>Don't panic. Apply liquid dish soap or a pre-treatment product and soak for 30 minutes to an hour before washing. For very old stains, try applying WD-40 first — it re-liquefies the dried oil so the dish soap can grab it.</p>
-    <h2>Quick Summary</h2>
-    <ol><li>Blot (never rub) immediately</li><li>Apply baking soda — wait 30 mins</li><li>Apply dish soap and work in gently</li><li>Wash in warmest safe water</li><li>Air dry, check, repeat if needed</li></ol>
-  `
-},
-'cockroach':{
-  meta:{title:'Get Rid of Cockroaches in the Kitchen Without Chemicals',cat:'Pest Control',date:'May 2025',time:'6 min',img:'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&h=500&fit=crop&auto=format'},
-  body:`
-    <p>Seeing a cockroach in your kitchen is enough to make your skin crawl. These pests are persistent — but you don't need to drench your kitchen in chemicals to get rid of them.</p>
-    <h2>Why Cockroaches Love Your Kitchen</h2>
-    <p>Cockroaches are drawn to three things: <strong>food, moisture, and warmth</strong>. Your kitchen has all three. They hide behind appliances, inside cabinets, under the sink — mostly coming out at night.</p>
-    <h2>Step 1: Remove Their Food Supply</h2>
-    <ul><li>Store all food in sealed containers</li><li>Clean up crumbs and spills immediately</li><li>Empty the trash every night</li><li>Don't leave dirty dishes in the sink overnight</li></ul>
-    <h2>Step 2: Eliminate Moisture</h2>
-    <p>Fix any leaky pipes. Dry out the sink before bed — even a few drops of water can sustain a cockroach for days.</p>
-    <div class="tip-box"><strong>💡 Tip</strong><p>Place a dry dishcloth over your drain at night to remove the moisture signal.</p></div>
-    <h2>Step 3: Use Boric Acid Safely</h2>
-    <p>Boric acid is a naturally occurring powder that's highly effective against cockroaches. Apply thin lines along cabinet edges, behind appliances, and under the sink. When cockroaches walk through it, it sticks to their bodies and kills them.</p>
-    <div class="warn-box"><strong>⚠️ Warning</strong><p>Keep boric acid away from food surfaces, children, and pets. Use gloves when handling it.</p></div>
-    <h2>Step 4: Baking Soda + Sugar Trap</h2>
-    <p>Mix equal parts baking soda and sugar in small shallow containers near problem areas. Sugar attracts cockroaches, baking soda kills them. Non-toxic to humans and pets.</p>
-    <h2>Step 5: Seal Entry Points</h2>
-    <p>Cockroaches can squeeze through gaps the width of a credit card. Seal cracks around pipes, inside cabinets, and along baseboards with caulk.</p>
-    <h2>Essential Oil Deterrents</h2>
-    <p>Peppermint oil repels cockroaches. Mix 15 drops with one cup of water in a spray bottle and spray along baseboards and cabinet corners. Reapply every few days.</p>
-    <h2>Summary Checklist</h2>
-    <ol><li>Seal and store all food</li><li>Fix moisture and leaks</li><li>Apply boric acid in hidden areas</li><li>Set baking soda + sugar traps</li><li>Seal gaps and entry points</li><li>Spray peppermint oil deterrent</li></ol>
-  `
-},
-'dripping-faucet':{
-  meta:{title:'Fix a Dripping Faucet Yourself: No Plumber Needed',cat:'Bathroom Fixes',date:'April 2025',time:'7 min',img:'https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1200&h=500&fit=crop&auto=format'},
-  body:`
-    <p>That constant drip-drip-drip isn't just annoying — a faucet dripping once per second wastes over 3,000 gallons of water per year. Fix it yourself in under an hour for almost nothing.</p>
-    <h2>Why Faucets Drip</h2>
-    <p>Most dripping faucets are caused by a <strong>worn-out washer or O-ring</strong> inside the handle mechanism. Every time you turn the faucet, this rubber part compresses. Over time it wears down and stops sealing properly.</p>
-    <h2>Tools You'll Need</h2>
-    <ul><li>Adjustable wrench</li><li>Phillips and flat-head screwdrivers</li><li>Replacement washers or cartridge</li><li>Plumber's grease</li><li>A towel or small bucket</li></ul>
-    <h2>Step 1: Turn Off the Water Supply</h2>
-    <p>Look under the sink for the shut-off valves. Turn them clockwise until they stop. Then turn on the faucet to release pressure and drain remaining water.</p>
-    <div class="warn-box"><strong>⚠️ Important</strong><p>Never skip this step. Removing the handle without turning off the water creates a much bigger problem.</p></div>
-    <h2>Step 2: Remove the Handle</h2>
-    <p>Pry off the decorative cap on top of the handle. Underneath is a screw — remove it and pull the handle straight off.</p>
-    <h2>Step 3: Replace Washer or Cartridge</h2>
-    <p><strong>Compression faucets:</strong> Unscrew the packing nut, pull out the stem, replace the rubber washer at the bottom.<br><strong>Cartridge faucets:</strong> Pull out the cartridge and take it to a hardware store to find an exact match.</p>
-    <div class="art-img ph" style="height:260px">🔧</div>
-    <h2>Step 4: Reassemble and Test</h2>
-    <p>Apply plumber's grease to the new washer or cartridge. Reassemble in reverse order. Open the shut-off valves slowly and test — the drip should be gone.</p>
-    <div class="tip-box"><strong>💡 Tip</strong><p>If the faucet is old and parts are hard to find, replacing the entire faucet unit ($30–60) is often the smarter move.</p></div>
-    <h2>Summary</h2>
-    <ol><li>Shut off water supply valves</li><li>Remove handle and access stem/cartridge</li><li>Replace worn washer or full cartridge</li><li>Reassemble and turn water back on</li><li>Test for drip — repeat if needed</li></ol>
-  `
-},
-'deep-clean':{
-  meta:{title:'How to Deep Clean Your Bathroom in 30 Minutes',cat:'Home Cleaning',date:'May 2025',time:'5 min',img:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&h=500&fit=crop&auto=format'},
-  body:`
-    <p>A dirty bathroom doesn't just look bad — it builds up bacteria, mold, and soap scum that become harder to remove the longer you wait. With the right plan, you can do a proper deep clean in 30 minutes flat.</p>
-    <div class="tip-box"><strong>💡 The Secret</strong><p>Pre-spray all surfaces when you walk in and let cleaners sit while you work elsewhere. Dwell time does most of the scrubbing for you.</p></div>
-    <h2>What You'll Need</h2>
-    <ul><li>All-purpose cleaner or white vinegar spray</li><li>Toilet bowl cleaner</li><li>Scrub brush for toilet</li><li>Microfiber cloths (2–3)</li><li>Sponge or scrubbing pad</li><li>Mop</li><li>Rubber gloves</li></ul>
-    <h2>Minutes 0–3: Spray Everything First</h2>
-    <p>Spray the toilet (inside and out), sink, shower/tub walls, and mirror. Let everything soak while you move.</p>
-    <h2>Minutes 3–8: Shower and Tub</h2>
-    <p>Scrub from top to bottom. Focus on grout lines and corners. For soap scum on glass doors, a paste of baking soda and dish soap works better than most sprays.</p>
-    <div class="warn-box"><strong>⚠️ Warning</strong><p>Never mix bleach with vinegar or ammonia. The combination produces toxic fumes. Use one product at a time.</p></div>
-    <h2>Minutes 8–14: Toilet</h2>
-    <p>Scrub the inside of the bowl, focusing under the rim. Then wipe down the entire outside — lid, seat (both sides), and the often-forgotten area behind the toilet.</p>
-    <h2>Minutes 14–20: Sink and Faucet</h2>
-    <p>Scrub the basin and wipe down the faucet handles. For mineral deposits around the faucet base, dab white vinegar and wait 2 minutes before wiping.</p>
-    <h2>Minutes 20–30: Mirror, Floor, Finish</h2>
-    <p>Wipe mirror with vinegar spray. Mop floor from far corner toward door. Empty trash. Replace toilet paper. Done.</p>
-    <h2>Time Table</h2>
-    <table><tr><th>Time</th><th>Task</th></tr><tr><td>0–3 min</td><td>Pre-spray all surfaces</td></tr><tr><td>3–8 min</td><td>Shower & tub</td></tr><tr><td>8–14 min</td><td>Toilet inside & out</td></tr><tr><td>14–20 min</td><td>Sink & faucet</td></tr><tr><td>20–24 min</td><td>Mirror & shelves</td></tr><tr><td>24–30 min</td><td>Floor & finish</td></tr></table>
-  `
-},
-'gas-burner':{
-  meta:{title:'Gas Burner Not Lighting? Easy Fixes',cat:'Kitchen Fixes',date:'May 2025',time:'5 min',img:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&h=500&fit=crop&auto=format'},
-  body:`
-    <p>You turn the knob, hear the clicking — but nothing lights. In most cases, this is a simple fix you can do yourself in under 15 minutes.</p>
-    <h2>Most Common Reasons</h2>
-    <ul><li><strong>Clogged burner ports</strong> — food debris blocks the tiny gas holes</li><li><strong>Wet or dirty igniter</strong> — coated with grease or moisture</li><li><strong>Misaligned burner cap</strong> — not sitting flat</li><li><strong>Faulty igniter</strong> — worn out</li><li><strong>Gas supply issue</strong> — valve or cylinder</li></ul>
-    <h2>Fix 1: Clean Burner Ports (70% of cases)</h2>
-    <ol><li>Turn stove completely off and let it cool</li><li>Remove the grate and lift off the burner cap</li><li>Use a toothpick or thin wire to clear each hole around the perimeter</li><li>Rinse and scrub with an old toothbrush</li><li>Dry completely before reassembling</li></ol>
-    <div class="art-img ph" style="height:240px">🔧</div>
-    <div class="warn-box"><strong>⚠️ Warning</strong><p>Never leave a broken toothpick inside a hole. Use metal tools and remove carefully.</p></div>
-    <h2>Fix 2: Dry Out a Wet Igniter</h2>
-    <p>Use a hair dryer on low to gently dry the igniter area for 1–2 minutes. Let the stove sit for 30 minutes before trying again. Common after boil-overs or cleaning with too much water.</p>
-    <h2>Fix 3: Reseat the Burner Cap</h2>
-    <p>Remove the cap completely and place it back perfectly flat. It needs to align with any notch on the burner head. Even a slight tilt disrupts the gas path.</p>
-    <h2>Fix 4: Clean the Igniter Tip</h2>
-    <p>Use a cotton swab dipped lightly in rubbing alcohol to wipe the small white ceramic igniter tip. Let it dry completely before testing.</p>
-    <div class="tip-box"><strong>💡 Tip</strong><p>Be gentle — igniters are fragile. Never use metal or abrasive materials.</p></div>
-    <div class="warn-box"><strong>⚠️ Gas Smell Warning</strong><p>If you smell gas — do NOT keep clicking. Turn off the knob, open windows, leave the house, and call your gas supplier.</p></div>
-    <h2>Quick Reference</h2>
-    <table><tr><th>Problem</th><th>Fix</th></tr><tr><td>Clogged ports</td><td>Clean with toothpick + brush</td></tr><tr><td>Wet igniter</td><td>Hair dryer + 30 min wait</td></tr><tr><td>Misaligned cap</td><td>Remove and reseat flat</td></tr><tr><td>Dirty igniter</td><td>Rubbing alcohol swab</td></tr><tr><td>No gas</td><td>Check valve & supply</td></tr></table>
-  `
+function goPage(p) {
+  currentPage = p;
+  renderPosts();
+  document.getElementById('posts').scrollIntoView({ behavior: 'smooth' });
 }
-};
 
-/* ═══════════════════════════════════════
+function filterCat(cat) {
+  currentFilter = cat;
+  currentPage = 1;
+  document.getElementById('postsLabel').textContent = cat;
+  document.getElementById('clearFilterBtn').style.display = 'block';
+  showHome();
+  renderPosts();
+  renderCats();
+  setTimeout(() => document.getElementById('posts').scrollIntoView({ behavior: 'smooth' }), 60);
+}
+
+function clearFilter() {
+  currentFilter = null; currentPage = 1;
+  document.getElementById('postsLabel').textContent = 'Latest Articles';
+  document.getElementById('clearFilterBtn').style.display = 'none';
+  renderPosts(); renderCats();
+}
+
+/* ═══════════════════════════════════════════════
    OPEN ARTICLE
-═══════════════════════════════════════ */
-function openArticle(id){
-  const art=ARTICLES[id];
-  const post=POSTS.find(p=>p.id===id);
-  if(!post&&!art)return;
-  const m=art?art.meta:{title:post.title,cat:post.cat,date:'May 2025',time:post.time,img:post.img};
+═══════════════════════════════════════════════ */
+function openArticle(id) {
+  const p = POSTS.find(x => x.id === id);
+  if (!p) return;
 
-  document.getElementById('artContent').innerHTML=`
-    <div class="art-hero">
-      <div class="art-hero-blob"></div>
-      <div class="art-hero-inner">
-        <div class="breadcrumb">
-          <a onclick="showHome()">Home</a> ›
-          <a onclick="filterCat('${m.cat}')">${m.cat}</a>
-        </div>
-        <span class="art-tag">${m.cat}</span>
-        <h1>${m.title}</h1>
-        <div class="art-meta">
-          <span>📅 ${m.date}</span>
-          <span>⏱ ${m.time} read</span>
-          <span>👤 FixHomeFast Team</span>
-        </div>
-        <img class="art-hero-img" src="${m.img}" alt="${m.title}" loading="lazy"
-          onerror="this.classList.add('ph');this.innerHTML='${post?post.icon:'🔧'}'"/>
-      </div>
+  document.getElementById('artHero').innerHTML = `
+    <div class="art-breadcrumb">
+      <a onclick="showHome()">Home</a> ›
+      <a onclick="filterCat('${p.cat}')">${p.cat}</a>
     </div>
-    <div class="art-body">${art?art.body:`<p>Full article coming soon. Browse related articles below while we finish writing this guide.</p><div class="tip-box"><strong>💡 Tip</strong><p>Check our other articles in the ${m.cat} category for similar solutions.</p></div>`}</div>
-  `;
-
-  const related=POSTS.filter(p=>p.id!==id&&p.cat===m.cat).slice(0,4);
-  document.getElementById('relContent').innerHTML=related.length?`
-    <div class="related-section">
-      <h3>RELATED ARTICLES</h3>
-      <div class="related-grid">
-        ${related.map(r=>`
-          <a class="rel-card" onclick="openArticle('${r.id}')">
-            <img class="rel-img" src="${r.img}" alt="${r.title}" loading="lazy"
-              onerror="this.classList.add('ph');this.innerHTML='${r.icon}'"/>
-            <div class="rel-body">
-              <div class="rel-tag">${r.cat}</div>
-              <div class="rel-title">${r.title}</div>
-            </div>
-          </a>
-        `).join('')}
-      </div>
+    <span class="art-tag">${p.cat}</span>
+    <h1 class="art-hero-h1">${p.title}</h1>
+    <div class="art-meta">
+      <span>📅 ${p.date || '2025'}</span>
+      <span>⏱ ${p.time} read</span>
+      <span>👤 FixHomeFast Team</span>
     </div>
-  `:'';
+    <img class="art-hero-img" src="${p.img || ''}" alt="${p.title}" loading="lazy"
+      onerror="this.classList.add('ph');this.innerHTML='${p.icon}'"/>`;
 
-  document.getElementById('homePage').style.display='none';
-  document.getElementById('articlePage').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('artBodyWrap').innerHTML =
+    `<div class="art-body-wrap">${p.body || '<p>Full article coming soon.</p>'}</div>`;
+
+  const rel = POSTS.filter(x => x.id !== id && x.cat === p.cat).slice(0, 4);
+  document.getElementById('artRel').innerHTML = rel.length ? `
+    <div class="rel-section">
+      <h3>Related Articles</h3>
+      <div class="rel-grid">${rel.map(r => `
+        <a class="rel-card" onclick="openArticle('${r.id}')">
+          <img src="${r.img || ''}" alt="${r.title}" loading="lazy"
+            onerror="this.classList.add('ph');this.innerHTML='${r.icon}'"/>
+          <div class="rel-body"><div class="rel-tag">${r.cat}</div><div class="rel-title">${r.title}</div></div>
+        </a>`).join('')}
+      </div>
+    </div>` : '';
+
+  // Page switch with GSAP
+  gsap.to('#home-page', { opacity: 0, y: -20, duration: 0.4, ease: 'power2.in',
+    onComplete: () => {
+      document.getElementById('home-page').style.display = 'none';
+      document.getElementById('art-page').style.display = 'block';
+      gsap.from('#art-page', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
 }
 
-/* ═══════════════════════════════════════
-   SHOW HOME
-═══════════════════════════════════════ */
-function showHome(){
-  document.getElementById('homePage').style.display='block';
-  document.getElementById('articlePage').style.display='none';
-  window.scrollTo({top:0,behavior:'smooth'});
+function showHome() {
+  gsap.to('#art-page', { opacity: 0, duration: 0.3, ease: 'power2.in',
+    onComplete: () => {
+      document.getElementById('art-page').style.display = 'none';
+      document.getElementById('home-page').style.display = 'block';
+      gsap.from('#home-page', { opacity: 0, duration: 0.4, ease: 'power3.out' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
 }
 
-/* ═══════════════════════════════════════
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+  document.getElementById('btt').classList.toggle('show', scrollY > 500);
+}, { passive: true });
+
+function scrollToId(id) {
+  gsap.to(window, { duration: 1.2, scrollTo: '#' + id, ease: 'power3.inOut' });
+}
+function toggleMob() {
+  document.getElementById('mobNav').classList.toggle('open');
+  document.getElementById('ham').classList.toggle('open');
+}
+function closeMob() {
+  document.getElementById('mobNav').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════
    NEWSLETTER
-═══════════════════════════════════════ */
-function nlSubscribe(){
-  const v=document.getElementById('nlEmail').value;
-  if(v&&v.includes('@')){
-    document.getElementById('nlMsg').style.display='block';
-    document.getElementById('nlEmail').value='';
+═══════════════════════════════════════════════ */
+function nlSub() {
+  const v = document.getElementById('nlEmail').value;
+  if (v && v.includes('@')) {
+    document.getElementById('nlMsg').style.display = 'block';
+    document.getElementById('nlEmail').value = '';
+    showToast('✓ Subscribed!', 'success');
   }
 }
 
-/* ═══════════════════════════════════════
-   SCROLL REVEAL
-═══════════════════════════════════════ */
-function revealAll(){
-  document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach((el,i)=>{
-    const r=el.getBoundingClientRect();
-    if(r.top<window.innerHeight-40){
-      setTimeout(()=>el.classList.add('v'),i*40);
-    }
-  });
+/* ═══════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════ */
+function showToast(msg, type = '') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type || '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
 }
-window.addEventListener('scroll',revealAll,{passive:true});
 
-/* ═══════════════════════════════════════
-   3D TILT ON BENTO CARDS
-═══════════════════════════════════════ */
-document.addEventListener('mousemove',e=>{
-  document.querySelectorAll('.bento-card').forEach(card=>{
-    const r=card.getBoundingClientRect();
-    const x=e.clientX-r.left,y=e.clientY-r.top;
-    if(x>0&&x<r.width&&y>0&&y<r.height){
-      const rx2=(y/r.height-.5)*8,ry2=-(x/r.width-.5)*8;
-      card.style.transform=`perspective(600px) rotateX(${rx2}deg) rotateY(${ry2}deg) translateY(-6px)`;
-    }
-  });
-});
-document.addEventListener('mouseleave',()=>{
-  document.querySelectorAll('.bento-card').forEach(c=>c.style.transform='');
+/* ═══════════════════════════════════════════════
+   ADMIN PANEL
+═══════════════════════════════════════════════ */
+const AU = 'admin', AP = 'fixhome2025';
+let admIn = !!sessionStorage.getItem('fhf_adm');
+
+function openAdmin() {
+  document.getElementById('admin-wrap').classList.add('show');
+  if (admIn) admTab('dash'); else admTab('login');
+}
+function closeAdmin() {
+  document.getElementById('admin-wrap').classList.remove('show');
+}
+document.getElementById('admin-wrap').addEventListener('click', e => {
+  if (e.target === document.getElementById('admin-wrap')) closeAdmin();
 });
 
-/* ═══════════════════════════════════════
-   INIT
-═══════════════════════════════════════ */
-renderBento();
-setTimeout(revealAll,200);
+function doLogin() {
+  const u = document.getElementById('au').value.trim();
+  const p = document.getElementById('ap').value;
+  if (u === AU && p === AP) {
+    admIn = true; sessionStorage.setItem('fhf_adm', '1');
+    ['adm-t-dash','adm-t-articles','adm-t-new'].forEach(id => { document.getElementById(id).style.display = 'block'; });
+    document.getElementById('adm-err').style.display = 'none';
+    admTab('dash'); showToast('Welcome back, Admin!', 'success');
+  } else {
+    document.getElementById('adm-err').style.display = 'block';
+    document.getElementById('ap').value = '';
+  }
+}
+
+function admTab(name) {
+  document.querySelectorAll('.adm-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.adm-t').forEach(t => t.classList.remove('active'));
+  document.getElementById('adm-pane-' + name)?.classList.add('active');
+  document.getElementById('adm-t-' + name)?.classList.add('active');
+  if (name === 'dash') renderAdmDash();
+  if (name === 'articles') renderAdmList();
+  if (name === 'new') resetForm();
+}
+
+function renderAdmDash() {
+  document.getElementById('admStatsG').innerHTML = [
+    [POSTS.length, 'Total Articles'],
+    [[...new Set(POSTS.map(p => p.cat))].length, 'Categories'],
+    [POSTS.filter(p => p.date?.includes('2025')).length, 'Published 2025'],
+    [Math.round(POSTS.reduce((a, p) => a + parseInt(p.time || 5), 0) / POSTS.length) + ' min', 'Avg Read Time'],
+  ].map(([n, l]) => `<div class="s-card"><div class="s-num">${n}</div><div class="s-lbl">${l}</div></div>`).join('');
+
+  document.getElementById('admRecent').innerHTML = POSTS.slice(-5).reverse().map(p => `
+    <div class="recent-item">
+      <div class="ar-icon">${p.icon}</div>
+      <div><div class="ar-title">${p.title}</div><div class="ar-cat">${p.cat} · ${p.time} · ${p.date || '2025'}</div></div>
+    </div>`).join('');
+}
+
+function renderAdmList() {
+  document.getElementById('admArtList').innerHTML = POSTS.map(p => `
+    <div class="art-row">
+      <div style="display:flex;align-items:center;gap:12px;flex:1;min-width:0">
+        <div class="ar-icon">${p.icon}</div>
+        <div><div class="ar-title">${p.title}</div><div class="ar-cat">${p.cat} · ${p.time}</div></div>
+      </div>
+      <div class="ar-actions">
+        <button class="ar-btn" onclick="editArt('${p.id}')">✏️ Edit</button>
+        <button class="ar-btn ar-del" onclick="delArt('${p.id}')">🗑 Delete</button>
+      </div>
+    </div>`).join('');
+}
+
+function editArt(id) {
+  const p = POSTS.find(x => x.id === id); if (!p) return;
+  document.getElementById('formH').textContent = 'Edit Article';
+  document.getElementById('f-t').value = p.title;
+  document.getElementById('f-c').value = p.cat;
+  document.getElementById('f-i').value = p.img || '';
+  document.getElementById('f-tm').value = p.time || '5 min';
+  document.getElementById('f-e').value = p.exc || '';
+  document.getElementById('f-b').value = p.body || '';
+  document.getElementById('f-mt').value = p.metaTitle || '';
+  document.getElementById('f-md').value = p.metaDesc || '';
+  document.getElementById('f-id').value = id;
+  admTab('new');
+}
+
+function delArt(id) {
+  if (!confirm('Delete this article permanently?')) return;
+  POSTS = POSTS.filter(p => p.id !== id);
+  savePosts(POSTS); renderAdmList(); renderPosts(); renderCats();
+  showToast('Article deleted.');
+}
+
+function saveArt() {
+  const t = document.getElementById('f-t').value.trim();
+  const c = document.getElementById('f-c').value;
+  const ex = document.getElementById('f-e').value.trim();
+  if (!t || !c || !ex) { showToast('Please fill in title, category, and excerpt.'); return; }
+  const cat = CATS_CONFIG.find(x => x.name === c);
+  const icon = cat ? cat.icon : '🔧';
+  const editId = document.getElementById('f-id').value;
+  const id = editId || t.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const now = new Date();
+  const date = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()] + ' ' + now.getFullYear();
+  if (editId) {
+    const idx = POSTS.findIndex(p => p.id === editId);
+    if (idx > -1) POSTS[idx] = { ...POSTS[idx], title: t, cat: c, img: document.getElementById('f-i').value.trim(), time: document.getElementById('f-tm').value.trim() || '5 min', exc: ex, body: document.getElementById('f-b').value.trim(), icon, metaTitle: document.getElementById('f-mt').value.trim(), metaDesc: document.getElementById('f-md').value.trim() };
+  } else {
+    POSTS.unshift({ id, title: t, cat: c, img: document.getElementById('f-i').value.trim(), time: document.getElementById('f-tm').value.trim() || '5 min', exc: ex, body: document.getElementById('f-b').value.trim(), icon, date, metaTitle: document.getElementById('f-mt').value.trim(), metaDesc: document.getElementById('f-md').value.trim() });
+  }
+  savePosts(POSTS); renderPosts(); renderCats();
+  showToast(editId ? 'Article updated!' : 'Article published!', 'success');
+  resetForm(); admTab('articles');
+}
+
+function resetForm() {
+  ['f-t','f-i','f-tm','f-e','f-b','f-mt','f-md','f-id'].forEach(id => { document.getElementById(id).value = ''; });
+  document.getElementById('f-c').value = '';
+  document.getElementById('formH').textContent = 'Write New Article';
+}
+
+/* Init admin if session still active */
+if (admIn) { ['adm-t-dash','adm-t-articles','adm-t-new'].forEach(id => { document.getElementById(id).style.display = 'block'; }); }
 </script>
 </body>
 </html>
