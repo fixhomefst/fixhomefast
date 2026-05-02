@@ -1,27 +1,28 @@
-# 🔧 FixHomeFast — Ultra Premium Edition
+# 🔧 FixHomeFast — Premium SEO Edition v4
 
-**Live DIY home solutions blog. Fast. Beautiful. AdSense-ready.**
+**Clean, premium, SEO-optimized DIY home solutions blog.**
 
-> Deploy in 30 seconds. No build step. No framework. Just upload and go.
+> Single HTML file. No build step. Deploy in 30 seconds.
 
 ---
 
-## ✨ What's Inside
+## ✨ What's New in v4
 
 | Feature | Details |
 |---|---|
-| 🎬 Welcome Screen | Cinematic animated intro on every load |
-| ✦ Particle Hero | Live animated canvas with connected dots |
-| 🖱️ Custom Cursor | Magnetic cursor with hover morphing effect |
-| 🎞️ Ticker Tape | Scrolling category strip in fire orange |
-| 🗂️ Bento Grid | Editorial magazine-style post layout |
-| 🖼️ Real Images | Unsplash photos on all article cards |
-| 📐 3D Tilt Cards | Mouse-tracked perspective tilt on hover |
-| 🔤 Bebas + Fraunces | Premium editorial font pairing |
-| 📱 Mobile Responsive | Full-screen slide-in mobile menu |
-| 📬 Newsletter Section | Dark section with animated blob background |
-| 🔍 SEO Ready | Meta tags, schema markup, canonical URLs |
-| 💰 AdSense Ready | Clean structure, original content, clear nav |
+| 🎨 Clean Layout | Champagne gold on deep charcoal — no messy background clutter |
+| 🖼️ SVG Thumbnails | Unique, hand-crafted SVG art per category — no external images needed |
+| 🔍 Full SEO | Meta title, description, focus keyword, schema markup per article |
+| 📍 Geo Targeting | US geo meta tags, English-US language targeting |
+| 🔗 Internal Linking | Every article links to 3–4 related articles with anchor text |
+| 📊 Schema Markup | Website + Blog + HowTo schema on every article page |
+| 🗝️ Long-tail Keywords | Every article targets a specific high-volume long-tail keyword |
+| 📰 20 Full Articles | Complete HTML bodies with H2/H3 structure, tips, warnings, tables |
+| 🗂️ Category Filter | Filter + paginate all 20+ articles by category |
+| ⚙️ Admin Dashboard | Login (admin / fixhome2025) — write, edit, delete articles |
+| 💾 localStorage | All admin changes persist across sessions |
+| 📱 Mobile Responsive | Works on all screen sizes |
+| 💰 AdSense Ready | Clean structure, original content, no keyword stuffing |
 
 ---
 
@@ -29,105 +30,148 @@
 
 ```
 fixhomefast/
-├── index.html     ← Entire website (HTML + CSS + JS, single file)
-├── vercel.json    ← Vercel headers + routing config
+├── index.html     ← Complete website
+├── vercel.json    ← Security headers + routing
 └── README.md      ← This file
 ```
 
 ---
 
-## 🚀 Deploy to Vercel (30 seconds)
+## 🚀 Deploy
 
-### Option A — Drag & Drop
-1. Go to [vercel.com](https://vercel.com) → New Project
-2. Drag the folder in
-3. Click Deploy ✅
-
-### Option B — Via GitHub
+### Vercel (Recommended)
 ```bash
-# In the project folder:
 git init
 git add .
-git commit -m "launch FixHomeFast v2"
+git commit -m "FixHomeFast v4 launch"
 git branch -M main
 git remote add origin https://github.com/YOURNAME/fixhomefast.git
 git push -u origin main
 ```
-Then: Vercel → Import → select repo → Deploy.
+Then: vercel.com → Import → Deploy ✅
 
-### Option C — GitHub Pages
-1. Repo → Settings → Pages
-2. Source: `main` branch, `/ (root)`
-3. Save → live at `https://yourusername.github.io/fixhomefast`
+### GitHub Pages
+Repo → Settings → Pages → Source: `main` branch `/root`
+
+### Local
+```bash
+open index.html
+# or
+npx serve .
+```
 
 ---
 
-## 📝 Adding New Articles
+## ⚙️ Admin Panel
 
-**Step 1** — Add to `POSTS` array (line ~310 in index.html):
+Click **Admin** in the nav bar.
+
+| Field | Value |
+|---|---|
+| Username | `admin` |
+| Password | `fixhome2025` |
+
+**Admin can:**
+- 📊 View article statistics
+- ✏️ Write new articles with full HTML body
+- 🖊️ Edit any existing article
+- 🗑️ Delete articles
+- 🔑 Set SEO focus keyword per article
+- 📝 Set meta title + meta description per article
+- 💾 All changes saved to browser localStorage
+
+**Change the password** — find in `index.html`:
 ```javascript
-{
-  id: 'your-slug',
-  cat: 'Home Cleaning',         // must match a category
-  icon: '🧹',                   // fallback if image fails
-  title: 'Your Article Title',
-  time: '5 min',
-  img: 'https://images.unsplash.com/photo-XXXXXXX?w=600&h=340&fit=crop',
-  exc: 'Short excerpt shown on featured cards.'
-},
+const AU='admin', AP='fixhome2025';
 ```
 
-**Step 2** — Add full article to `ARTICLES` object (line ~390):
+---
+
+## 📝 SEO Structure
+
+Each article includes:
+
 ```javascript
-'your-slug': {
-  meta: {
-    title: 'Your Article Title',
-    cat: 'Home Cleaning',
-    date: 'June 2025',
-    time: '5 min',
-    img: 'https://images.unsplash.com/photo-XXXXXXX?w=1200&h=500&fit=crop'
-  },
-  body: `
-    <p>Your intro paragraph here.</p>
-    <h2>Section Heading</h2>
-    <p>Content here...</p>
-    <div class="tip-box"><strong>💡 Tip</strong><p>Tip text.</p></div>
-    <div class="warn-box"><strong>⚠️ Warning</strong><p>Warning text.</p></div>
-  `
-},
+{
+  id:       'slug-for-url',
+  title:    'Full Article Title',
+  kw:       'focus keyword phrase',        // Long-tail keyword
+  meta:     'SEO Page Title | FixHomeFast', // 50–60 chars
+  metaDesc: 'Meta description...',          // 150–160 chars
+  body:     `<h2>...</h2><p>...</p>`        // Full HTML with H2/H3
+}
+```
+
+**Schema markup** injected dynamically on article open:
+- `WebSite` schema on homepage
+- `Blog` schema on homepage
+- `HowTo` schema on every article page
+
+**Internal linking** — every article body contains:
+```html
+<div class="ilink-box">
+  <strong>🔗 Related Guides</strong>
+  <a onclick="openArticle('related-id')">→ Related Article Title</a>
+</div>
+```
+
+---
+
+## 🎨 Customise Colors
+
+```css
+:root {
+  --gold:    #c9a84c;   /* Main accent */
+  --gold-l:  #e8c46a;   /* Light accent */
+  --gold-d:  #9e7f32;   /* Dark accent */
+  --bg:      #0e0e0e;   /* Background */
+  --t1:      #f2edd8;   /* Primary text */
+  --t2:      #a89f8c;   /* Secondary text */
+}
 ```
 
 ---
 
 ## 💰 AdSense Setup
 
-Find this comment in index.html:
-```html
-<!-- AdSense: paste your <ins> tag here -->
-```
-Replace with your AdSense code block.
+Find the comment `<!-- AdSense -->` in the HTML and paste your `<ins>` tag.
+
+**AdSense compliance checklist:**
+- ✅ 20 original, high-quality articles
+- ✅ Clear navigation and category structure
+- ✅ Privacy Policy + Disclaimer links in footer
+- ✅ No keyword stuffing
+- ✅ Mobile responsive
+- ✅ Fast loading (no heavy 3D, CDN fonts only)
+- ✅ Unique SVG thumbnails (no copyright issues)
 
 ---
 
-## 🎨 Changing Colors
+## 🔍 SEO Keywords Targeted
 
-Edit CSS variables at the top of the `<style>` block:
-```css
-:root {
-  --fire: #e85d04;    /* main accent — change to any color */
-  --ember: #f48c06;   /* secondary accent */
-  --gold: #ffd60a;    /* highlight color */
-  --ink: #09090b;     /* dark background */
-  --paper: #fafaf9;   /* page background */
-}
-```
+| Article | Focus Keyword |
+|---|---|
+| Oil Stains | how to remove oil stains from clothes |
+| Cockroaches | how to get rid of cockroaches naturally |
+| Dripping Faucet | how to fix a dripping faucet yourself |
+| Bathroom Cleaning | how to deep clean bathroom fast |
+| Gas Burner | gas burner not lighting fix |
+| Squeaky Floor | how to fix squeaky floorboard without lifting |
+| Red Wine | how to remove red wine stains from carpet |
+| Cool Room | how to keep room cool without air conditioning |
+| Kitchen Ants | how to get rid of kitchen ants naturally |
+| Shower Drain | how to unclog shower drain without tools |
+| Grout Mold | how to remove mold from bathroom grout |
+| Fridge Fix | refrigerator not cooling fix |
+| Window Fix | how to fix window that wont stay open |
+| Blood Stains | how to remove blood stains from sheets |
+| Mice | how to get rid of mice yourself |
+| Oven Clean | how to clean oven without chemicals |
+| Coffee Stain | how to remove coffee stains from clothes |
+| Shower Pressure | how to fix low shower pressure |
+| Kitchen Sink | how to unclog kitchen sink without chemicals |
+| Noise Walls | how to reduce noise through thin walls |
 
 ---
 
-## 📄 License
-
-Free to use for personal and commercial projects.
-
----
-
-Built with 🔥 for homeowners who fix things themselves.
+© 2025 FixHomeFast. Built for homeowners who fix things themselves.
